@@ -91,6 +91,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChinhSuacs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChinhSuacs.Designer.cs">
+      <DependentUpon>ChinhSuacs.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChiTiet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,15 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="xacnhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xacnhan.Designer.cs">
+      <DependentUpon>xacnhan.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ChinhSuacs.resx">
+      <DependentUpon>ChinhSuacs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChiTiet.resx">
       <DependentUpon>ChiTiet.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xacnhan.resx">
+      <DependentUpon>xacnhan.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

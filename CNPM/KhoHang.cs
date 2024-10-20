@@ -31,5 +31,7 @@ namespace CNPM
             ctkh.ShowDialog();
             this.Show();
         }
+
+
     }
 }

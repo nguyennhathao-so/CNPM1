@@ -108,24 +108,24 @@
             this.guna2TextBox4.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox4.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2TextBox4.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox4.Location = new System.Drawing.Point(270, 508);
+            this.guna2TextBox4.Location = new System.Drawing.Point(242, 490);
             this.guna2TextBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2TextBox4.Name = "guna2TextBox4";
             this.guna2TextBox4.PasswordChar = '\0';
             this.guna2TextBox4.PlaceholderText = "";
             this.guna2TextBox4.SelectedText = "";
-            this.guna2TextBox4.Size = new System.Drawing.Size(185, 28);
+            this.guna2TextBox4.Size = new System.Drawing.Size(261, 28);
             this.guna2TextBox4.TabIndex = 17;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(101, 511);
+            this.label5.Location = new System.Drawing.Point(60, 492);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(163, 22);
+            this.label5.Size = new System.Drawing.Size(177, 22);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Đơn vị vận chuyển:";
+            this.label5.Text = "Trạng thái đơn hàng:";
             // 
             // guna2TextBox3
             // 
@@ -139,24 +139,24 @@
             this.guna2TextBox3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2TextBox3.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox3.Location = new System.Drawing.Point(271, 465);
+            this.guna2TextBox3.Location = new System.Drawing.Point(399, 431);
             this.guna2TextBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2TextBox3.Name = "guna2TextBox3";
             this.guna2TextBox3.PasswordChar = '\0';
             this.guna2TextBox3.PlaceholderText = "";
             this.guna2TextBox3.SelectedText = "";
-            this.guna2TextBox3.Size = new System.Drawing.Size(184, 28);
+            this.guna2TextBox3.Size = new System.Drawing.Size(104, 28);
             this.guna2TextBox3.TabIndex = 15;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(102, 468);
+            this.label4.Location = new System.Drawing.Point(285, 418);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 22);
+            this.label4.Size = new System.Drawing.Size(96, 55);
             this.label4.TabIndex = 14;
             this.label4.Text = "Đơn vị vận chuyển:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // guna2TextBox2
             // 
@@ -170,24 +170,24 @@
             this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.Location = new System.Drawing.Point(244, 422);
+            this.guna2TextBox2.Location = new System.Drawing.Point(117, 431);
             this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2TextBox2.Name = "guna2TextBox2";
             this.guna2TextBox2.PasswordChar = '\0';
             this.guna2TextBox2.PlaceholderText = "";
             this.guna2TextBox2.SelectedText = "";
-            this.guna2TextBox2.Size = new System.Drawing.Size(211, 28);
+            this.guna2TextBox2.Size = new System.Drawing.Size(151, 28);
             this.guna2TextBox2.TabIndex = 13;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(102, 425);
+            this.label3.Location = new System.Drawing.Point(35, 421);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 22);
+            this.label3.Size = new System.Drawing.Size(76, 49);
             this.label3.TabIndex = 12;
             this.label3.Text = "Mã vận chuyển:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -205,6 +205,7 @@
             this.DataGridViewBangChiTiet.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.DataGridViewBangChiTiet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridViewBangChiTiet.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.DataGridViewBangChiTiet.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -214,7 +215,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataGridViewBangChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridViewBangChiTiet.ColumnHeadersHeight = 19;
+            this.DataGridViewBangChiTiet.ColumnHeadersHeight = 30;
             this.DataGridViewBangChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.DataGridViewBangChiTiet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -229,11 +230,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewBangChiTiet.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DataGridViewBangChiTiet.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.DataGridViewBangChiTiet.GridColor = System.Drawing.Color.Black;
             this.DataGridViewBangChiTiet.Location = new System.Drawing.Point(29, 247);
             this.DataGridViewBangChiTiet.Name = "DataGridViewBangChiTiet";
             this.DataGridViewBangChiTiet.RowHeadersVisible = false;
-            this.DataGridViewBangChiTiet.RowHeadersWidth = 51;
+            this.DataGridViewBangChiTiet.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.DataGridViewBangChiTiet.RowTemplate.Height = 24;
             this.DataGridViewBangChiTiet.Size = new System.Drawing.Size(474, 139);
             this.DataGridViewBangChiTiet.TabIndex = 10;
@@ -243,16 +244,16 @@
             this.DataGridViewBangChiTiet.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.DataGridViewBangChiTiet.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.DataGridViewBangChiTiet.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.DataGridViewBangChiTiet.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.DataGridViewBangChiTiet.ThemeStyle.GridColor = System.Drawing.Color.Black;
             this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.Height = 19;
+            this.DataGridViewBangChiTiet.ThemeStyle.HeaderStyle.Height = 30;
             this.DataGridViewBangChiTiet.ThemeStyle.ReadOnly = false;
-            this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.Black;
+            this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.DataGridViewBangChiTiet.ThemeStyle.RowsStyle.Height = 24;
@@ -326,7 +327,7 @@
             this.SDT.Name = "SDT";
             this.SDT.Size = new System.Drawing.Size(52, 22);
             this.SDT.TabIndex = 7;
-            this.SDT.Text = "SDT:";
+            this.SDT.Text = "SĐT:";
             // 
             // TextBoxSDT
             // 

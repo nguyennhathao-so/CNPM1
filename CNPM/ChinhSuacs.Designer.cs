@@ -1,6 +1,6 @@
 ﻿namespace CNPM
 {
-    partial class ThemKhoHang
+    partial class ChinhSuacs
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThemKhoHang));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChinhSuacs));
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.ExitKhoHang = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.nenChiTiet = new Guna.UI2.WinForms.Guna2Panel();
             this.LuuKhoHang = new Guna.UI2.WinForms.Guna2Button();
             this.kichthuoc = new Guna.UI2.WinForms.Guna2TextBox();
@@ -49,42 +47,15 @@
             this.MoTaKhoHang = new Guna.UI2.WinForms.Guna2TextBox();
             this.TextBoxMasp = new Guna.UI2.WinForms.Guna2TextBox();
             this.thongTin = new System.Windows.Forms.Label();
+            this.labelChinhSua = new System.Windows.Forms.Label();
+            this.ExitKhoHang = new Guna.UI2.WinForms.Guna2CircleButton();
             this.nenChiTiet.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Elipse1
             // 
-            this.guna2Elipse1.BorderRadius = 16;
+            this.guna2Elipse1.BorderRadius = 17;
             this.guna2Elipse1.TargetControl = this;
-            // 
-            // ExitKhoHang
-            // 
-            this.ExitKhoHang.BackColor = System.Drawing.Color.Transparent;
-            this.ExitKhoHang.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.ExitKhoHang.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.ExitKhoHang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ExitKhoHang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ExitKhoHang.FillColor = System.Drawing.Color.Transparent;
-            this.ExitKhoHang.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ExitKhoHang.ForeColor = System.Drawing.Color.White;
-            this.ExitKhoHang.Image = ((System.Drawing.Image)(resources.GetObject("ExitKhoHang.Image")));
-            this.ExitKhoHang.Location = new System.Drawing.Point(519, 18);
-            this.ExitKhoHang.Name = "ExitKhoHang";
-            this.ExitKhoHang.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.ExitKhoHang.Size = new System.Drawing.Size(40, 40);
-            this.ExitKhoHang.TabIndex = 1;
-            this.ExitKhoHang.Click += new System.EventHandler(this.ExitKhoHang_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(100, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 42);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Thêm Sản Phẩm Mới";
             // 
             // nenChiTiet
             // 
@@ -106,10 +77,10 @@
             this.nenChiTiet.Controls.Add(this.TextBoxMasp);
             this.nenChiTiet.Controls.Add(this.thongTin);
             this.nenChiTiet.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.nenChiTiet.Location = new System.Drawing.Point(24, 100);
+            this.nenChiTiet.Location = new System.Drawing.Point(25, 102);
             this.nenChiTiet.Name = "nenChiTiet";
             this.nenChiTiet.Size = new System.Drawing.Size(530, 558);
-            this.nenChiTiet.TabIndex = 5;
+            this.nenChiTiet.TabIndex = 8;
             // 
             // LuuKhoHang
             // 
@@ -127,7 +98,6 @@
             this.LuuKhoHang.Size = new System.Drawing.Size(291, 44);
             this.LuuKhoHang.TabIndex = 28;
             this.LuuKhoHang.Text = "Lưu";
-            this.LuuKhoHang.Click += new System.EventHandler(this.LuuKhoHang_Click);
             // 
             // kichthuoc
             // 
@@ -403,22 +373,48 @@
             this.thongTin.TabIndex = 0;
             this.thongTin.Text = "Thông tin cơ bản";
             // 
-            // ThemKhoHang
+            // labelChinhSua
+            // 
+            this.labelChinhSua.AutoSize = true;
+            this.labelChinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelChinhSua.ForeColor = System.Drawing.Color.White;
+            this.labelChinhSua.Location = new System.Drawing.Point(101, 37);
+            this.labelChinhSua.Name = "labelChinhSua";
+            this.labelChinhSua.Size = new System.Drawing.Size(391, 42);
+            this.labelChinhSua.TabIndex = 7;
+            this.labelChinhSua.Text = "Chỉnh Sửa Thông Tin";
+            // 
+            // ExitKhoHang
+            // 
+            this.ExitKhoHang.BackColor = System.Drawing.Color.Transparent;
+            this.ExitKhoHang.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.ExitKhoHang.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.ExitKhoHang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ExitKhoHang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.ExitKhoHang.FillColor = System.Drawing.Color.Transparent;
+            this.ExitKhoHang.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ExitKhoHang.ForeColor = System.Drawing.Color.White;
+            this.ExitKhoHang.Image = ((System.Drawing.Image)(resources.GetObject("ExitKhoHang.Image")));
+            this.ExitKhoHang.Location = new System.Drawing.Point(520, 20);
+            this.ExitKhoHang.Name = "ExitKhoHang";
+            this.ExitKhoHang.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.ExitKhoHang.Size = new System.Drawing.Size(40, 40);
+            this.ExitKhoHang.TabIndex = 6;
+            // 
+            // ChinhSuacs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(97)))), ((int)(((byte)(125)))));
             this.ClientSize = new System.Drawing.Size(585, 680);
             this.Controls.Add(this.nenChiTiet);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelChinhSua);
             this.Controls.Add(this.ExitKhoHang);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(585, 680);
             this.MinimumSize = new System.Drawing.Size(585, 680);
-            this.Name = "ThemKhoHang";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ThemKhoHang";
-            this.Load += new System.EventHandler(this.ThemKhoHang_Load);
+            this.Name = "ChinhSuacs";
+            this.Text = "ChinhSuacs";
             this.nenChiTiet.ResumeLayout(false);
             this.nenChiTiet.PerformLayout();
             this.ResumeLayout(false);
@@ -429,23 +425,23 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2CircleButton ExitKhoHang;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Panel nenChiTiet;
+        private Guna.UI2.WinForms.Guna2Button LuuKhoHang;
+        private Guna.UI2.WinForms.Guna2TextBox kichthuoc;
+        private Guna.UI2.WinForms.Guna2TextBox cannang;
+        private Guna.UI2.WinForms.Guna2ComboBox baohanh;
+        private Guna.UI2.WinForms.Guna2TextBox NhaSX;
+        private Guna.UI2.WinForms.Guna2TextBox Soluong;
+        private Guna.UI2.WinForms.Guna2TextBox XuatSu;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2TextBox GiaSp;
+        private Guna.UI2.WinForms.Guna2TextBox Tensp;
+        private Guna.UI2.WinForms.Guna2TextBox NganhHang;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox MoTaKhoHang;
         private Guna.UI2.WinForms.Guna2TextBox TextBoxMasp;
         private System.Windows.Forms.Label thongTin;
-        private Guna.UI2.WinForms.Guna2TextBox NganhHang;
-        private Guna.UI2.WinForms.Guna2TextBox Tensp;
-        private Guna.UI2.WinForms.Guna2TextBox GiaSp;
-        private Guna.UI2.WinForms.Guna2TextBox XuatSu;
-        private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2TextBox NhaSX;
-        private Guna.UI2.WinForms.Guna2TextBox Soluong;
-        private Guna.UI2.WinForms.Guna2ComboBox baohanh;
-        private Guna.UI2.WinForms.Guna2TextBox kichthuoc;
-        private Guna.UI2.WinForms.Guna2TextBox cannang;
-        private Guna.UI2.WinForms.Guna2Button LuuKhoHang;
+        private System.Windows.Forms.Label labelChinhSua;
+        private Guna.UI2.WinForms.Guna2CircleButton ExitKhoHang;
     }
 }

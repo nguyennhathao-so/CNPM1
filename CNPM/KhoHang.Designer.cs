@@ -49,7 +49,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChiTietKhoHang = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconKhoHang)).BeginInit();
@@ -192,13 +191,15 @@
             this.bangKhoHang.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.bangKhoHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.bangKhoHang.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.bangKhoHang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bangKhoHang.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.bangKhoHang.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.bangKhoHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -213,9 +214,9 @@
             this.Column6});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.bangKhoHang.DefaultCellStyle = dataGridViewCellStyle3;
@@ -226,14 +227,14 @@
             this.bangKhoHang.RowHeadersVisible = false;
             this.bangKhoHang.RowHeadersWidth = 51;
             this.bangKhoHang.RowTemplate.Height = 24;
-            this.bangKhoHang.Size = new System.Drawing.Size(1019, 461);
+            this.bangKhoHang.Size = new System.Drawing.Size(1185, 461);
             this.bangKhoHang.TabIndex = 38;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.bangKhoHang.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.bangKhoHang.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.bangKhoHang.ThemeStyle.GridColor = System.Drawing.Color.Black;
             this.bangKhoHang.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.bangKhoHang.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -242,8 +243,8 @@
             this.bangKhoHang.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.bangKhoHang.ThemeStyle.HeaderStyle.Height = 22;
             this.bangKhoHang.ThemeStyle.ReadOnly = false;
-            this.bangKhoHang.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.bangKhoHang.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.bangKhoHang.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.Black;
+            this.bangKhoHang.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.bangKhoHang.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bangKhoHang.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.bangKhoHang.ThemeStyle.RowsStyle.Height = 24;
@@ -286,30 +287,11 @@
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
-            // ChiTietKhoHang
-            // 
-            this.ChiTietKhoHang.BackColor = System.Drawing.Color.Transparent;
-            this.ChiTietKhoHang.BorderRadius = 17;
-            this.ChiTietKhoHang.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.ChiTietKhoHang.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.ChiTietKhoHang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ChiTietKhoHang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ChiTietKhoHang.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ChiTietKhoHang.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChiTietKhoHang.ForeColor = System.Drawing.Color.White;
-            this.ChiTietKhoHang.Location = new System.Drawing.Point(1089, 411);
-            this.ChiTietKhoHang.Name = "ChiTietKhoHang";
-            this.ChiTietKhoHang.Size = new System.Drawing.Size(160, 41);
-            this.ChiTietKhoHang.TabIndex = 39;
-            this.ChiTietKhoHang.Text = "Chi tiết";
-            this.ChiTietKhoHang.Click += new System.EventHandler(this.ChiTietKhoHang_Click);
-            // 
             // KhoHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(239)))), ((int)(((byte)(227)))));
-            this.Controls.Add(this.ChiTietKhoHang);
             this.Controls.Add(this.bangKhoHang);
             this.Controls.Add(this.buttonThem);
             this.Controls.Add(this.guna2PictureBox3);
@@ -350,6 +332,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private Guna.UI2.WinForms.Guna2Button ChiTietKhoHang;
     }
 }
