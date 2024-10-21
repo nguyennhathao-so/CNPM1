@@ -37,7 +37,7 @@ namespace CNPM
         {
             try
             {
-                SqlConnection con = new SqlConnection(@"");
+                SqlConnection con = new SqlConnection(@"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True;");
                 con.Open();
                 string tk = TenDN.Text;
                 string mk = MK.Text;

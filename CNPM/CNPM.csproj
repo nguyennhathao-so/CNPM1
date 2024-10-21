@@ -109,6 +109,11 @@
     <Compile Include="ChiTietKhoHang.Designer.cs">
       <DependentUpon>ChiTietKhoHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="CNPM_databaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CNPM_databaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DonHang.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -219,6 +224,17 @@
     <EmbeddedResource Include="xacnhan.resx">
       <DependentUpon>xacnhan.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="CNPM_databaseDataSet.xsc">
+      <DependentUpon>CNPM_databaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CNPM_databaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CNPM_databaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CNPM_databaseDataSet.xss">
+      <DependentUpon>CNPM_databaseDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
