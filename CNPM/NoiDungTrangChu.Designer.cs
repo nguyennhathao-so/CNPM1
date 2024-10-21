@@ -46,14 +46,14 @@
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textbox6 = new System.Windows.Forms.TextBox();
+            this.textbox5 = new System.Windows.Forms.TextBox();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textbox4 = new System.Windows.Forms.TextBox();
+            this.textbox3 = new System.Windows.Forms.TextBox();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textbox2 = new System.Windows.Forms.TextBox();
+            this.textbox1 = new System.Windows.Forms.TextBox();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
@@ -257,102 +257,105 @@
             this.guna2Panel7.BorderColor = System.Drawing.Color.Black;
             this.guna2Panel7.BorderRadius = 10;
             this.guna2Panel7.BorderThickness = 2;
-            this.guna2Panel7.Controls.Add(this.textBox5);
-            this.guna2Panel7.Controls.Add(this.textBox6);
+            this.guna2Panel7.Controls.Add(this.textbox6);
+            this.guna2Panel7.Controls.Add(this.textbox5);
             this.guna2Panel7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(215)))), ((int)(((byte)(136)))));
             this.guna2Panel7.Location = new System.Drawing.Point(748, 731);
             this.guna2Panel7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel7.Name = "guna2Panel7";
             this.guna2Panel7.Size = new System.Drawing.Size(171, 132);
             this.guna2Panel7.TabIndex = 36;
+            this.guna2Panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel7_Paint);
             // 
-            // textBox5
+            // textbox6
             // 
-            this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(215)))), ((int)(((byte)(136)))));
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Location = new System.Drawing.Point(26, 86);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(120, 19);
-            this.textBox5.TabIndex = 5;
+            this.textbox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(215)))), ((int)(((byte)(136)))));
+            this.textbox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox6.Location = new System.Drawing.Point(26, 86);
+            this.textbox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textbox6.Name = "textbox6";
+            this.textbox6.Size = new System.Drawing.Size(120, 19);
+            this.textbox6.TabIndex = 5;
             // 
-            // textBox6
+            // textbox5
             // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(215)))), ((int)(((byte)(136)))));
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Location = new System.Drawing.Point(26, 38);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(120, 19);
-            this.textBox6.TabIndex = 4;
+            this.textbox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(215)))), ((int)(((byte)(136)))));
+            this.textbox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox5.Location = new System.Drawing.Point(26, 38);
+            this.textbox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textbox5.Name = "textbox5";
+            this.textbox5.Size = new System.Drawing.Size(120, 19);
+            this.textbox5.TabIndex = 4;
             // 
             // guna2Panel6
             // 
             this.guna2Panel6.BorderColor = System.Drawing.Color.Black;
             this.guna2Panel6.BorderRadius = 10;
             this.guna2Panel6.BorderThickness = 2;
-            this.guna2Panel6.Controls.Add(this.textBox3);
-            this.guna2Panel6.Controls.Add(this.textBox4);
+            this.guna2Panel6.Controls.Add(this.textbox4);
+            this.guna2Panel6.Controls.Add(this.textbox3);
             this.guna2Panel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(68)))), ((int)(((byte)(22)))));
             this.guna2Panel6.Location = new System.Drawing.Point(748, 515);
             this.guna2Panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel6.Name = "guna2Panel6";
             this.guna2Panel6.Size = new System.Drawing.Size(171, 132);
             this.guna2Panel6.TabIndex = 35;
+            this.guna2Panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel6_Paint);
             // 
-            // textBox3
+            // textbox4
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(68)))), ((int)(((byte)(22)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(26, 86);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(120, 19);
-            this.textBox3.TabIndex = 3;
+            this.textbox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(68)))), ((int)(((byte)(22)))));
+            this.textbox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox4.Location = new System.Drawing.Point(26, 86);
+            this.textbox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textbox4.Name = "textbox4";
+            this.textbox4.Size = new System.Drawing.Size(120, 19);
+            this.textbox4.TabIndex = 3;
             // 
-            // textBox4
+            // textbox3
             // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(68)))), ((int)(((byte)(22)))));
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(26, 38);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(120, 19);
-            this.textBox4.TabIndex = 2;
+            this.textbox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(68)))), ((int)(((byte)(22)))));
+            this.textbox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox3.Location = new System.Drawing.Point(26, 38);
+            this.textbox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textbox3.Name = "textbox3";
+            this.textbox3.Size = new System.Drawing.Size(120, 19);
+            this.textbox3.TabIndex = 2;
             // 
             // guna2Panel5
             // 
             this.guna2Panel5.BorderColor = System.Drawing.Color.Black;
             this.guna2Panel5.BorderRadius = 10;
             this.guna2Panel5.BorderThickness = 2;
-            this.guna2Panel5.Controls.Add(this.textBox2);
-            this.guna2Panel5.Controls.Add(this.textBox1);
+            this.guna2Panel5.Controls.Add(this.textbox2);
+            this.guna2Panel5.Controls.Add(this.textbox1);
             this.guna2Panel5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(237)))), ((int)(((byte)(16)))));
             this.guna2Panel5.Location = new System.Drawing.Point(748, 299);
             this.guna2Panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.Size = new System.Drawing.Size(171, 132);
             this.guna2Panel5.TabIndex = 34;
+            this.guna2Panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel5_Paint);
             // 
-            // textBox2
+            // textbox2
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(237)))), ((int)(((byte)(16)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(26, 88);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(120, 19);
-            this.textBox2.TabIndex = 1;
+            this.textbox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(237)))), ((int)(((byte)(16)))));
+            this.textbox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox2.Location = new System.Drawing.Point(26, 88);
+            this.textbox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textbox2.Name = "textbox2";
+            this.textbox2.Size = new System.Drawing.Size(120, 19);
+            this.textbox2.TabIndex = 1;
             // 
-            // textBox1
+            // textbox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(237)))), ((int)(((byte)(16)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(26, 39);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 19);
-            this.textBox1.TabIndex = 0;
+            this.textbox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(237)))), ((int)(((byte)(16)))));
+            this.textbox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox1.Location = new System.Drawing.Point(26, 39);
+            this.textbox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textbox1.Name = "textbox1";
+            this.textbox1.Size = new System.Drawing.Size(120, 19);
+            this.textbox1.TabIndex = 0;
             // 
             // guna2Panel4
             // 
@@ -522,14 +525,14 @@
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textbox6;
+        private System.Windows.Forms.TextBox textbox5;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textbox4;
+        private System.Windows.Forms.TextBox textbox3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textbox2;
+        private System.Windows.Forms.TextBox textbox1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;

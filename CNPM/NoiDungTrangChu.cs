@@ -13,11 +13,10 @@ namespace CNPM
         public NoiDungTrangChu()
         {
             InitializeComponent();
-            // Call LoadData() when the control is initialized to fetch and display data
-            LoadData();
-            
-            CreateNewChart();  // Create the new chart
+            LoadData();         // Load the data into the DataGridView
+            CreateNewChart();   // Create the new chart
             LoadChartData();    // Load data into the new chart
+            LoadMetricsData();  // Load and display Doanh Số, Đơn Hàng, Tồn Kho in the panels
         }
 
         // Method to retrieve data from the SQL database and display it in the DataGridView
@@ -25,13 +24,9 @@ namespace CNPM
         {
             try
             {
-                // Set AutoGenerateColumns to false to avoid creating new columns
                 bangTrangChu.AutoGenerateColumns = false;
 
-                // Connection string to SQL Server
                 string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
-
-                // SQL query to retrieve data
                 string query = @"
                 SELECT p.ProductName AS SanPham, 
                        SUM(od.Quantity) AS SoLuong, 
@@ -43,7 +38,6 @@ namespace CNPM
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-
                     using (SqlCommand command = new SqlCommand(query, con))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -51,22 +45,17 @@ namespace CNPM
                             DataTable data1 = new DataTable();
                             adapter.Fill(data1);
 
-                            // Ensure that data is retrieved and not null
                             if (data1 != null && data1.Rows.Count > 0)
                             {
                                 foreach (DataRow row in data1.Rows)
                                 {
-                                    // Convert DoanhThu to millions (triệu) for display
-                                    row["DoanhThu"] = Convert.ToDecimal(row["DoanhThu"]) / 1_000_000;
+                                    row["DoanhThu"] = Convert.ToDecimal(row["DoanhThu"]) / 1_000_000;  // Convert to millions
                                 }
 
-                                // Bind the DataTable to the DataGridView without creating new columns
                                 bangTrangChu.DataSource = data1;
                                 this.Column1.DataPropertyName = "SanPham";  // For 'Sản phẩm' column
                                 this.Column2.DataPropertyName = "SoLuong";  // For 'Số lượng' column
                                 this.Column3.DataPropertyName = "DoanhThu"; // For 'Doanh Thu' column
-                                //bangTrangChu.Columns["DoanhThu"].DefaultCellStyle.Format = "N2";
-
                             }
                             else
                             {
@@ -78,35 +67,26 @@ namespace CNPM
             }
             catch (Exception ex)
             {
-                // Show detailed error message
                 MessageBox.Show("Error loading data: " + ex.Message);
             }
         }
-
-        private void BieuDo_Click(object sender, EventArgs e)
-        {
-        }
-
 
         // Method to create a new chart and add it to the form
         private void CreateNewChart()
         {
             myNewChart = new Chart();
-            myNewChart.Size = new System.Drawing.Size(500,400);
-            myNewChart.Location = new System.Drawing.Point(-10,161);  // Set the location for the new chart
+            myNewChart.Size = new System.Drawing.Size(500, 400);
+            myNewChart.Location = new System.Drawing.Point(-10, 161);  // Set the location for the new chart
 
-            // Create a new chart area
             ChartArea chartArea = new ChartArea();
             chartArea.AxisX.Title = "Tháng";
             chartArea.AxisY.Title = "Doanh thu (VND)";
             myNewChart.ChartAreas.Add(chartArea);
 
-            // Create a new series
             Series series = new Series();
             series.ChartType = SeriesChartType.Column;  // Set the type of chart (Column chart)
             myNewChart.Series.Add(series);
 
-            // Add the chart to the form
             this.Controls.Add(myNewChart);
         }
 
@@ -115,16 +95,14 @@ namespace CNPM
         {
             try
             {
-                // SQL query to retrieve DoanhThu by month (assuming OrderDate is the date of the order)
                 string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
 
-                // SQL query to sum DoanhThu for each month
                 string query = @"
                 SELECT MONTH(o.OrderDate) AS Thang, 
                        SUM(od.Quantity * od.UnitPrice) AS DoanhThu
                 FROM OrderDetails od
                 JOIN Orders o ON od.OrderID = o.OrderID
-                WHERE MONTH(o.OrderDate) BETWEEN 1 AND 12  -- Only include valid months
+                WHERE MONTH(o.OrderDate) BETWEEN 1 AND 12  
                 GROUP BY MONTH(o.OrderDate)
                 ORDER BY MONTH(o.OrderDate)";
 
@@ -139,21 +117,16 @@ namespace CNPM
                             DataTable data = new DataTable();
                             adapter.Fill(data);
 
-                            // Clear previous data points from the chart
                             myNewChart.Series[0].Points.Clear();
 
-                            // Add points to the chart
                             foreach (DataRow row in data.Rows)
                             {
-                                // X value is the month (Thang), Y value is the DoanhThu
                                 int month = Convert.ToInt32(row["Thang"]);
-                                decimal revenue = Convert.ToDecimal(row["DoanhThu"]) / 1_000_000;
+                                decimal revenue = Convert.ToDecimal(row["DoanhThu"]) / 1_000_000;  // Convert to millions
 
-                                // Add the data to the chart series
                                 myNewChart.Series[0].Points.AddXY(month, revenue);
                             }
 
-                            // Optionally set additional chart formatting
                             myNewChart.ChartAreas[0].AxisX.Title = "Tháng";
                             myNewChart.ChartAreas[0].AxisY.Title = "Doanh thu (Triệu VND)";
                         }
@@ -164,6 +137,161 @@ namespace CNPM
             {
                 MessageBox.Show("Error loading chart data: " + ex.Message);
             }
+        }
+
+        // Method to fetch data for metrics like Doanh Số, Đơn Hàng, and Tồn Kho
+        private void LoadMetricsData()
+        {
+            try
+            {
+                string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    // Fetch Doanh Số (Revenue)
+                    string revenueQuery = @"
+                        SELECT SUM(od.Quantity * od.UnitPrice) AS DoanhSo 
+                        FROM OrderDetails od
+                        JOIN Orders o ON od.OrderID = o.OrderID
+                        WHERE YEAR(o.OrderDate) = 2023";
+
+                    // Fetch Đơn Hàng (Orders count)
+                    string ordersQuery = @"
+                        SELECT COUNT(o.OrderID) AS DonHang 
+                        FROM Orders o 
+                        WHERE YEAR(o.OrderDate) = 2023";
+
+                    // Fetch Tồn Kho (Total Quantity Sold as Stock)
+                    string stockQuery = @"
+                        SELECT SUM(od.Quantity) AS TonKho 
+                        FROM OrderDetails od
+                        JOIN Orders o ON od.OrderID = o.OrderID
+                        WHERE YEAR(o.OrderDate) = 2023";
+
+                    using (SqlCommand revenueCommand = new SqlCommand(revenueQuery, con))
+                    using (SqlCommand ordersCommand = new SqlCommand(ordersQuery, con))
+                    using (SqlCommand stockCommand = new SqlCommand(stockQuery, con))
+                    {
+                        decimal currentRevenue = Convert.ToDecimal(revenueCommand.ExecuteScalar());
+                        textbox1.Text = (currentRevenue / 1_000_000).ToString("N0");  // Display in millions
+
+                        int currentOrders = Convert.ToInt32(ordersCommand.ExecuteScalar());
+                        textbox3.Text = currentOrders.ToString();  // Display orders count
+
+                        int currentStock = Convert.ToInt32(stockCommand.ExecuteScalar());
+                        textbox5.Text = currentStock.ToString();  // Display total quantity sold
+                    }
+                }
+
+                CalculateAndDisplayIncrease();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading metrics data: " + ex.Message);
+            }
+        }
+
+        // Helper methods to fetch data for two periods
+        private decimal GetRevenueForPeriod(string startDate, string endDate)
+        {
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+            string query = @"
+                SELECT SUM(od.Quantity * od.UnitPrice) AS DoanhSo 
+                FROM OrderDetails od
+                JOIN Orders o ON od.OrderID = o.OrderID
+                WHERE o.OrderDate BETWEEN @startDate AND @endDate";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@startDate", startDate);
+                cmd.Parameters.AddWithValue("@endDate", endDate);
+                con.Open();
+
+                return Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+        }
+
+        private int GetOrdersForPeriod(string startDate, string endDate)
+        {
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+            string query = @"
+                SELECT COUNT(OrderID) AS DonHang 
+                FROM Orders 
+                WHERE OrderDate BETWEEN @startDate AND @endDate";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@startDate", startDate);
+                cmd.Parameters.AddWithValue("@endDate", endDate);
+                con.Open();
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private int GetStockForPeriod(string startDate, string endDate)
+        {
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+            string query = @"
+                SELECT SUM(od.Quantity) AS TonKho 
+                FROM OrderDetails od
+                JOIN Orders o ON od.OrderID = o.OrderID
+                WHERE o.OrderDate BETWEEN @startDate AND @endDate";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@startDate", startDate);
+                cmd.Parameters.AddWithValue("@endDate", endDate);
+                con.Open();
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        // Calculate percentage increase and display them in textboxes
+        private void CalculateAndDisplayIncrease()
+        {
+            decimal firstHalfRevenue = GetRevenueForPeriod("2023-01-01", "2023-06-30");
+            decimal secondHalfRevenue = GetRevenueForPeriod("2023-07-01", "2023-12-31");
+            double revenueIncrease = CalculatePercentageIncrease((double)firstHalfRevenue, (double)secondHalfRevenue);  // Convert to double
+            textbox2.Text = "↑ " + revenueIncrease.ToString("F2") + "%";  // Display the increase in textbox2
+
+            int firstHalfOrders = GetOrdersForPeriod("2023-01-01", "2023-06-30");
+            int secondHalfOrders = GetOrdersForPeriod("2023-07-01", "2023-12-31");
+            double ordersIncrease = CalculatePercentageIncrease(firstHalfOrders, secondHalfOrders);
+            textbox4.Text = "↑ " + ordersIncrease.ToString("F2") + "%";
+
+            int firstHalfStock = GetStockForPeriod("2023-01-01", "2023-06-30");
+            int secondHalfStock = GetStockForPeriod("2023-07-01", "2023-12-31");
+            double stockIncrease = CalculatePercentageIncrease(firstHalfStock, secondHalfStock);
+            textbox6.Text = "↑ " + stockIncrease.ToString("F2") + "%";
+        }
+
+
+        private double CalculatePercentageIncrease(double firstHalf, double secondHalf)
+        {
+            if (firstHalf == 0) return 0;  // Avoid division by zero
+            return ((secondHalf - firstHalf) / firstHalf) * 100;
+        }
+
+        private void guna2Panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Panel7_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

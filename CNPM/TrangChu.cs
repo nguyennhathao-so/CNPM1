@@ -68,5 +68,10 @@ namespace CNPM
         {
             MessageBox.Show("Hệ thống chưa hỗ trợ!");
         }
+
+        private void khachHang1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
