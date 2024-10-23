@@ -852,6 +852,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(245, 66);
             this.guna2Button1.TabIndex = 37;
             this.guna2Button1.Text = "Tạo Đơn";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // guna2DataGridView1
             // 

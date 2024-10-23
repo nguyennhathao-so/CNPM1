@@ -279,19 +279,6 @@ namespace CNPM
             return ((secondHalf - firstHalf) / firstHalf) * 100;
         }
 
-        private void guna2Panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void guna2Panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void guna2Panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }
