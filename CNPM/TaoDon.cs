@@ -214,5 +214,10 @@ namespace CNPM
                 }
             }
         }
+
+        private void TaoDon_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

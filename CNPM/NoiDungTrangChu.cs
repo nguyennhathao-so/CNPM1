@@ -279,6 +279,9 @@ namespace CNPM
             return ((secondHalf - firstHalf) / firstHalf) * 100;
         }
 
-       
+        private void NoiDungTrangChu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

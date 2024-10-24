@@ -67,9 +67,10 @@
             this.guna2Panel8.Controls.Add(this.guna2ComboBox1);
             this.guna2Panel8.Controls.Add(this.guna2PictureBox2);
             this.guna2Panel8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(72)))), ((int)(((byte)(100)))));
-            this.guna2Panel8.Location = new System.Drawing.Point(913, 35);
+            this.guna2Panel8.Location = new System.Drawing.Point(1027, 44);
+            this.guna2Panel8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2Panel8.Name = "guna2Panel8";
-            this.guna2Panel8.Size = new System.Drawing.Size(336, 79);
+            this.guna2Panel8.Size = new System.Drawing.Size(378, 99);
             this.guna2Panel8.TabIndex = 32;
             // 
             // guna2ComboBox1
@@ -87,9 +88,10 @@
             this.guna2ComboBox1.ItemHeight = 30;
             this.guna2ComboBox1.Items.AddRange(new object[] {
             "Shin Store"});
-            this.guna2ComboBox1.Location = new System.Drawing.Point(80, 19);
+            this.guna2ComboBox1.Location = new System.Drawing.Point(90, 24);
+            this.guna2ComboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(232, 36);
+            this.guna2ComboBox1.Size = new System.Drawing.Size(260, 36);
             this.guna2ComboBox1.StartIndex = 0;
             this.guna2ComboBox1.TabIndex = 1;
             // 
@@ -98,7 +100,8 @@
             this.guna2PictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox2.Image")));
             this.guna2PictureBox2.ImageRotate = 0F;
-            this.guna2PictureBox2.Location = new System.Drawing.Point(9, 10);
+            this.guna2PictureBox2.Location = new System.Drawing.Point(10, 12);
+            this.guna2PictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
             this.guna2PictureBox2.Size = new System.Drawing.Size(45, 50);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -109,21 +112,22 @@
             // 
             this.labelKhoHang.AutoSize = true;
             this.labelKhoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKhoHang.Location = new System.Drawing.Point(121, 49);
+            this.labelKhoHang.Location = new System.Drawing.Point(136, 61);
             this.labelKhoHang.Name = "labelKhoHang";
-            this.labelKhoHang.Size = new System.Drawing.Size(164, 38);
+            this.labelKhoHang.Size = new System.Drawing.Size(198, 46);
             this.labelKhoHang.TabIndex = 34;
             this.labelKhoHang.Text = "Kho hàng";
             // 
             // iconKhoHang
             // 
             this.iconKhoHang.AutoRoundedCorners = true;
-            this.iconKhoHang.BorderRadius = 26;
+            this.iconKhoHang.BorderRadius = 32;
             this.iconKhoHang.Image = ((System.Drawing.Image)(resources.GetObject("iconKhoHang.Image")));
             this.iconKhoHang.ImageRotate = 0F;
-            this.iconKhoHang.Location = new System.Drawing.Point(47, 42);
+            this.iconKhoHang.Location = new System.Drawing.Point(53, 52);
+            this.iconKhoHang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconKhoHang.Name = "iconKhoHang";
-            this.iconKhoHang.Size = new System.Drawing.Size(59, 54);
+            this.iconKhoHang.Size = new System.Drawing.Size(66, 68);
             this.iconKhoHang.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.iconKhoHang.TabIndex = 33;
             this.iconKhoHang.TabStop = false;
@@ -134,9 +138,10 @@
             this.guna2PictureBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox3.Image")));
             this.guna2PictureBox3.ImageRotate = 0F;
-            this.guna2PictureBox3.Location = new System.Drawing.Point(64, 152);
+            this.guna2PictureBox3.Location = new System.Drawing.Point(72, 190);
+            this.guna2PictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.guna2PictureBox3.Name = "guna2PictureBox3";
-            this.guna2PictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.guna2PictureBox3.Size = new System.Drawing.Size(34, 38);
             this.guna2PictureBox3.TabIndex = 36;
             this.guna2PictureBox3.TabStop = false;
             // 
@@ -158,14 +163,14 @@
             this.TimKiem.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.TimKiem.ForeColor = System.Drawing.Color.Black;
             this.TimKiem.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TimKiem.Location = new System.Drawing.Point(99, 146);
-            this.TimKiem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TimKiem.Location = new System.Drawing.Point(111, 182);
+            this.TimKiem.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.TimKiem.Name = "TimKiem";
             this.TimKiem.PasswordChar = '\0';
             this.TimKiem.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.TimKiem.PlaceholderText = "Nhập mã/ Tên sản phẩm/ Ngành hàng";
             this.TimKiem.SelectedText = "";
-            this.TimKiem.Size = new System.Drawing.Size(744, 41);
+            this.TimKiem.Size = new System.Drawing.Size(837, 51);
             this.TimKiem.TabIndex = 35;
             // 
             // buttonThem
@@ -180,9 +185,10 @@
             this.buttonThem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.buttonThem.ForeColor = System.Drawing.Color.White;
             this.buttonThem.Image = ((System.Drawing.Image)(resources.GetObject("buttonThem.Image")));
-            this.buttonThem.Location = new System.Drawing.Point(861, 140);
+            this.buttonThem.Location = new System.Drawing.Point(969, 175);
+            this.buttonThem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonThem.Name = "buttonThem";
-            this.buttonThem.Size = new System.Drawing.Size(59, 52);
+            this.buttonThem.Size = new System.Drawing.Size(66, 65);
             this.buttonThem.TabIndex = 37;
             this.buttonThem.Click += new System.EventHandler(this.buttonThem_Click);
             // 
@@ -221,13 +227,14 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.bangKhoHang.DefaultCellStyle = dataGridViewCellStyle3;
             this.bangKhoHang.GridColor = System.Drawing.Color.Black;
-            this.bangKhoHang.Location = new System.Drawing.Point(64, 224);
+            this.bangKhoHang.Location = new System.Drawing.Point(72, 280);
+            this.bangKhoHang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bangKhoHang.Name = "bangKhoHang";
             this.bangKhoHang.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.bangKhoHang.RowHeadersVisible = false;
             this.bangKhoHang.RowHeadersWidth = 51;
             this.bangKhoHang.RowTemplate.Height = 24;
-            this.bangKhoHang.Size = new System.Drawing.Size(1185, 461);
+            this.bangKhoHang.Size = new System.Drawing.Size(1333, 576);
             this.bangKhoHang.TabIndex = 38;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.bangKhoHang.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -289,7 +296,7 @@
             // 
             // KhoHang
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(239)))), ((int)(((byte)(227)))));
             this.Controls.Add(this.bangKhoHang);
@@ -299,10 +306,12 @@
             this.Controls.Add(this.labelKhoHang);
             this.Controls.Add(this.iconKhoHang);
             this.Controls.Add(this.guna2Panel8);
-            this.MaximumSize = new System.Drawing.Size(1443, 749);
-            this.MinimumSize = new System.Drawing.Size(1443, 749);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximumSize = new System.Drawing.Size(1623, 936);
+            this.MinimumSize = new System.Drawing.Size(1623, 936);
             this.Name = "KhoHang";
-            this.Size = new System.Drawing.Size(1443, 749);
+            this.Size = new System.Drawing.Size(1623, 936);
+            this.Load += new System.EventHandler(this.KhoHang_Load);
             this.guna2Panel8.ResumeLayout(false);
             this.guna2Panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();

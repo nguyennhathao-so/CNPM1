@@ -489,6 +489,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "NoiDungTrangChu";
             this.Size = new System.Drawing.Size(1614, 930);
+            this.Load += new System.EventHandler(this.NoiDungTrangChu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bangTrangChu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cNPMdatabaseDataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cNPM_databaseDataSet)).EndInit();
