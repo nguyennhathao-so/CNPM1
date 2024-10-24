@@ -42,13 +42,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.GiaSp = new Guna.UI2.WinForms.Guna2TextBox();
             this.Tensp = new Guna.UI2.WinForms.Guna2TextBox();
-            this.NganhHang = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.MoTaKhoHang = new Guna.UI2.WinForms.Guna2TextBox();
             this.TextBoxMasp = new Guna.UI2.WinForms.Guna2TextBox();
             this.thongTin = new System.Windows.Forms.Label();
             this.labelChinhSua = new System.Windows.Forms.Label();
             this.ExitKhoHang = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.nenChiTiet.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             // 
             this.nenChiTiet.BackColor = System.Drawing.Color.Transparent;
             this.nenChiTiet.BorderRadius = 17;
+            this.nenChiTiet.Controls.Add(this.guna2ComboBox1);
             this.nenChiTiet.Controls.Add(this.LuuKhoHang);
             this.nenChiTiet.Controls.Add(this.kichthuoc);
             this.nenChiTiet.Controls.Add(this.cannang);
@@ -71,7 +72,6 @@
             this.nenChiTiet.Controls.Add(this.label6);
             this.nenChiTiet.Controls.Add(this.GiaSp);
             this.nenChiTiet.Controls.Add(this.Tensp);
-            this.nenChiTiet.Controls.Add(this.NganhHang);
             this.nenChiTiet.Controls.Add(this.label2);
             this.nenChiTiet.Controls.Add(this.MoTaKhoHang);
             this.nenChiTiet.Controls.Add(this.TextBoxMasp);
@@ -153,14 +153,14 @@
             this.baohanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baohanh.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.baohanh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.baohanh.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.baohanh.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold);
             this.baohanh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.baohanh.ItemHeight = 28;
+            this.baohanh.ItemHeight = 36;
             this.baohanh.Items.AddRange(new object[] {
             "Bảo hành"});
-            this.baohanh.Location = new System.Drawing.Point(280, 342);
+            this.baohanh.Location = new System.Drawing.Point(282, 340);
             this.baohanh.Name = "baohanh";
-            this.baohanh.Size = new System.Drawing.Size(217, 34);
+            this.baohanh.Size = new System.Drawing.Size(217, 42);
             this.baohanh.StartIndex = 0;
             this.baohanh.TabIndex = 25;
             // 
@@ -290,29 +290,6 @@
             this.Tensp.Size = new System.Drawing.Size(217, 40);
             this.Tensp.TabIndex = 19;
             // 
-            // NganhHang
-            // 
-            this.NganhHang.BorderRadius = 10;
-            this.NganhHang.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.NganhHang.DefaultText = "";
-            this.NganhHang.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.NganhHang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.NganhHang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.NganhHang.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.NganhHang.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.NganhHang.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NganhHang.ForeColor = System.Drawing.Color.Black;
-            this.NganhHang.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.NganhHang.Location = new System.Drawing.Point(282, 44);
-            this.NganhHang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.NganhHang.Name = "NganhHang";
-            this.NganhHang.PasswordChar = '\0';
-            this.NganhHang.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.NganhHang.PlaceholderText = "Ngành hàng";
-            this.NganhHang.SelectedText = "";
-            this.NganhHang.Size = new System.Drawing.Size(217, 40);
-            this.NganhHang.TabIndex = 18;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -411,6 +388,25 @@
             this.ExitKhoHang.Size = new System.Drawing.Size(40, 40);
             this.ExitKhoHang.TabIndex = 6;
             // 
+            // guna2ComboBox1
+            // 
+            this.guna2ComboBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ComboBox1.BorderRadius = 10;
+            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2ComboBox1.ItemHeight = 36;
+            this.guna2ComboBox1.Items.AddRange(new object[] {
+            "Ngành hàng"});
+            this.guna2ComboBox1.Location = new System.Drawing.Point(282, 44);
+            this.guna2ComboBox1.Name = "guna2ComboBox1";
+            this.guna2ComboBox1.Size = new System.Drawing.Size(215, 42);
+            this.guna2ComboBox1.StartIndex = 0;
+            this.guna2ComboBox1.TabIndex = 29;
+            // 
             // ChinhSuacs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -446,12 +442,12 @@
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox GiaSp;
         private Guna.UI2.WinForms.Guna2TextBox Tensp;
-        private Guna.UI2.WinForms.Guna2TextBox NganhHang;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox MoTaKhoHang;
         private Guna.UI2.WinForms.Guna2TextBox TextBoxMasp;
         private System.Windows.Forms.Label thongTin;
         private System.Windows.Forms.Label labelChinhSua;
         private Guna.UI2.WinForms.Guna2CircleButton ExitKhoHang;
+        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
     }
 }

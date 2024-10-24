@@ -176,6 +176,12 @@
     <Compile Include="xacnhan.Designer.cs">
       <DependentUpon>xacnhan.cs</DependentUpon>
     </Compile>
+    <Compile Include="XacNhanDangXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XacNhanDangXuat.Designer.cs">
+      <DependentUpon>XacNhanDangXuat.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ChinhSuacs.resx">
       <DependentUpon>ChinhSuacs.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="xacnhan.resx">
       <DependentUpon>xacnhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XacNhanDangXuat.resx">
+      <DependentUpon>XacNhanDangXuat.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CNPM_databaseDataSet.xsc">
       <DependentUpon>CNPM_databaseDataSet.xsd</DependentUpon>

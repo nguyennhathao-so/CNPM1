@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiTietKhoHang));
             this.nenChiTiet = new Guna.UI2.WinForms.Guna2Panel();
+            this.labelKichThuoc = new System.Windows.Forms.Label();
+            this.labelxuatSu = new System.Windows.Forms.Label();
+            this.labelCanNang = new System.Windows.Forms.Label();
+            this.labelBan = new System.Windows.Forms.Label();
+            this.labelBaoHanh = new System.Windows.Forms.Label();
+            this.labelKho = new System.Windows.Forms.Label();
+            this.labelNhaSanXuat = new System.Windows.Forms.Label();
             this.labelGia = new System.Windows.Forms.Label();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.txXuatSKichThuoc = new Guna.UI2.WinForms.Guna2TextBox();
@@ -47,13 +54,6 @@
             this.MaSP = new Guna.UI2.WinForms.Guna2TextBox();
             this.Exit = new Guna.UI2.WinForms.Guna2CircleButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelNhaSanXuat = new System.Windows.Forms.Label();
-            this.labelKho = new System.Windows.Forms.Label();
-            this.labelBaoHanh = new System.Windows.Forms.Label();
-            this.labelBan = new System.Windows.Forms.Label();
-            this.labelCanNang = new System.Windows.Forms.Label();
-            this.labelxuatSu = new System.Windows.Forms.Label();
-            this.labelKichThuoc = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.nenChiTiet.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +89,83 @@
             this.nenChiTiet.Size = new System.Drawing.Size(739, 535);
             this.nenChiTiet.TabIndex = 3;
             // 
+            // labelKichThuoc
+            // 
+            this.labelKichThuoc.AutoSize = true;
+            this.labelKichThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKichThuoc.ForeColor = System.Drawing.Color.White;
+            this.labelKichThuoc.Location = new System.Drawing.Point(363, 251);
+            this.labelKichThuoc.Name = "labelKichThuoc";
+            this.labelKichThuoc.Size = new System.Drawing.Size(110, 25);
+            this.labelKichThuoc.TabIndex = 30;
+            this.labelKichThuoc.Text = "Kích thước:";
+            // 
+            // labelxuatSu
+            // 
+            this.labelxuatSu.AutoSize = true;
+            this.labelxuatSu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelxuatSu.ForeColor = System.Drawing.Color.White;
+            this.labelxuatSu.Location = new System.Drawing.Point(45, 251);
+            this.labelxuatSu.Name = "labelxuatSu";
+            this.labelxuatSu.Size = new System.Drawing.Size(85, 25);
+            this.labelxuatSu.TabIndex = 29;
+            this.labelxuatSu.Text = "Xuất sứ:";
+            // 
+            // labelCanNang
+            // 
+            this.labelCanNang.AutoSize = true;
+            this.labelCanNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCanNang.ForeColor = System.Drawing.Color.White;
+            this.labelCanNang.Location = new System.Drawing.Point(363, 198);
+            this.labelCanNang.Name = "labelCanNang";
+            this.labelCanNang.Size = new System.Drawing.Size(104, 25);
+            this.labelCanNang.TabIndex = 28;
+            this.labelCanNang.Text = "Cân nặng:";
+            // 
+            // labelBan
+            // 
+            this.labelBan.AutoSize = true;
+            this.labelBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBan.ForeColor = System.Drawing.Color.White;
+            this.labelBan.Location = new System.Drawing.Point(45, 198);
+            this.labelBan.Name = "labelBan";
+            this.labelBan.Size = new System.Drawing.Size(81, 25);
+            this.labelBan.TabIndex = 27;
+            this.labelBan.Text = "Đã bán:";
+            // 
+            // labelBaoHanh
+            // 
+            this.labelBaoHanh.AutoSize = true;
+            this.labelBaoHanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBaoHanh.ForeColor = System.Drawing.Color.White;
+            this.labelBaoHanh.Location = new System.Drawing.Point(363, 146);
+            this.labelBaoHanh.Name = "labelBaoHanh";
+            this.labelBaoHanh.Size = new System.Drawing.Size(102, 25);
+            this.labelBaoHanh.TabIndex = 26;
+            this.labelBaoHanh.Text = "Bảo hành:";
+            // 
+            // labelKho
+            // 
+            this.labelKho.AutoSize = true;
+            this.labelKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKho.ForeColor = System.Drawing.Color.White;
+            this.labelKho.Location = new System.Drawing.Point(45, 146);
+            this.labelKho.Name = "labelKho";
+            this.labelKho.Size = new System.Drawing.Size(54, 25);
+            this.labelKho.TabIndex = 25;
+            this.labelKho.Text = "Kho:";
+            // 
+            // labelNhaSanXuat
+            // 
+            this.labelNhaSanXuat.AutoSize = true;
+            this.labelNhaSanXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNhaSanXuat.ForeColor = System.Drawing.Color.White;
+            this.labelNhaSanXuat.Location = new System.Drawing.Point(363, 93);
+            this.labelNhaSanXuat.Name = "labelNhaSanXuat";
+            this.labelNhaSanXuat.Size = new System.Drawing.Size(133, 25);
+            this.labelNhaSanXuat.TabIndex = 24;
+            this.labelNhaSanXuat.Text = "Nhà sản xuất:";
+            // 
             // labelGia
             // 
             this.labelGia.AutoSize = true;
@@ -110,7 +187,8 @@
             this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox1.ForeColor = System.Drawing.Color.Black;
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox1.Location = new System.Drawing.Point(50, 289);
             this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -133,7 +211,8 @@
             this.txXuatSKichThuoc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txXuatSKichThuoc.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txXuatSKichThuoc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txXuatSKichThuoc.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txXuatSKichThuoc.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txXuatSKichThuoc.ForeColor = System.Drawing.Color.Black;
             this.txXuatSKichThuoc.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txXuatSKichThuoc.Location = new System.Drawing.Point(530, 241);
             this.txXuatSKichThuoc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -155,7 +234,8 @@
             this.textBoxXuatSu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxXuatSu.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxXuatSu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxXuatSu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxXuatSu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxXuatSu.ForeColor = System.Drawing.Color.Black;
             this.textBoxXuatSu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textBoxXuatSu.Location = new System.Drawing.Point(152, 241);
             this.textBoxXuatSu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -177,7 +257,8 @@
             this.textBoxCanNang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxCanNang.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxCanNang.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxCanNang.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxCanNang.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCanNang.ForeColor = System.Drawing.Color.Black;
             this.textBoxCanNang.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textBoxCanNang.Location = new System.Drawing.Point(530, 188);
             this.textBoxCanNang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -199,7 +280,8 @@
             this.textBoxDaBan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxDaBan.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxDaBan.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxDaBan.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxDaBan.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDaBan.ForeColor = System.Drawing.Color.Black;
             this.textBoxDaBan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textBoxDaBan.Location = new System.Drawing.Point(152, 188);
             this.textBoxDaBan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -221,7 +303,8 @@
             this.TextBoxBaoHanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.TextBoxBaoHanh.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.TextBoxBaoHanh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TextBoxBaoHanh.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TextBoxBaoHanh.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxBaoHanh.ForeColor = System.Drawing.Color.Black;
             this.TextBoxBaoHanh.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TextBoxBaoHanh.Location = new System.Drawing.Point(530, 136);
             this.TextBoxBaoHanh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -243,7 +326,8 @@
             this.textboxkho.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textboxkho.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textboxkho.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textboxkho.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textboxkho.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textboxkho.ForeColor = System.Drawing.Color.Black;
             this.textboxkho.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textboxkho.Location = new System.Drawing.Point(152, 136);
             this.textboxkho.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -265,7 +349,8 @@
             this.textBoxNhaSanXuat.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxNhaSanXuat.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxNhaSanXuat.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNhaSanXuat.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxNhaSanXuat.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNhaSanXuat.ForeColor = System.Drawing.Color.Black;
             this.textBoxNhaSanXuat.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.textBoxNhaSanXuat.Location = new System.Drawing.Point(530, 83);
             this.textBoxNhaSanXuat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -287,7 +372,8 @@
             this.TextBoxGia.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.TextBoxGia.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.TextBoxGia.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TextBoxGia.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TextBoxGia.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxGia.ForeColor = System.Drawing.Color.Black;
             this.TextBoxGia.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TextBoxGia.Location = new System.Drawing.Point(152, 83);
             this.TextBoxGia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -342,7 +428,8 @@
             this.thuongHieu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.thuongHieu.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.thuongHieu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.thuongHieu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thuongHieu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thuongHieu.ForeColor = System.Drawing.Color.Black;
             this.thuongHieu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.thuongHieu.Location = new System.Drawing.Point(356, 28);
             this.thuongHieu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -364,7 +451,8 @@
             this.MaSP.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.MaSP.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.MaSP.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.MaSP.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.MaSP.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaSP.ForeColor = System.Drawing.Color.Black;
             this.MaSP.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.MaSP.Location = new System.Drawing.Point(152, 28);
             this.MaSP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -404,83 +492,6 @@
             this.label1.Size = new System.Drawing.Size(317, 42);
             this.label1.TabIndex = 4;
             this.label1.Text = "Chi tiết đơn hàng";
-            // 
-            // labelNhaSanXuat
-            // 
-            this.labelNhaSanXuat.AutoSize = true;
-            this.labelNhaSanXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNhaSanXuat.ForeColor = System.Drawing.Color.White;
-            this.labelNhaSanXuat.Location = new System.Drawing.Point(363, 93);
-            this.labelNhaSanXuat.Name = "labelNhaSanXuat";
-            this.labelNhaSanXuat.Size = new System.Drawing.Size(133, 25);
-            this.labelNhaSanXuat.TabIndex = 24;
-            this.labelNhaSanXuat.Text = "Nhà sản xuất:";
-            // 
-            // labelKho
-            // 
-            this.labelKho.AutoSize = true;
-            this.labelKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKho.ForeColor = System.Drawing.Color.White;
-            this.labelKho.Location = new System.Drawing.Point(45, 146);
-            this.labelKho.Name = "labelKho";
-            this.labelKho.Size = new System.Drawing.Size(54, 25);
-            this.labelKho.TabIndex = 25;
-            this.labelKho.Text = "Kho:";
-            // 
-            // labelBaoHanh
-            // 
-            this.labelBaoHanh.AutoSize = true;
-            this.labelBaoHanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBaoHanh.ForeColor = System.Drawing.Color.White;
-            this.labelBaoHanh.Location = new System.Drawing.Point(363, 146);
-            this.labelBaoHanh.Name = "labelBaoHanh";
-            this.labelBaoHanh.Size = new System.Drawing.Size(102, 25);
-            this.labelBaoHanh.TabIndex = 26;
-            this.labelBaoHanh.Text = "Bảo hành:";
-            // 
-            // labelBan
-            // 
-            this.labelBan.AutoSize = true;
-            this.labelBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBan.ForeColor = System.Drawing.Color.White;
-            this.labelBan.Location = new System.Drawing.Point(45, 198);
-            this.labelBan.Name = "labelBan";
-            this.labelBan.Size = new System.Drawing.Size(81, 25);
-            this.labelBan.TabIndex = 27;
-            this.labelBan.Text = "Đã bán:";
-            // 
-            // labelCanNang
-            // 
-            this.labelCanNang.AutoSize = true;
-            this.labelCanNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCanNang.ForeColor = System.Drawing.Color.White;
-            this.labelCanNang.Location = new System.Drawing.Point(363, 198);
-            this.labelCanNang.Name = "labelCanNang";
-            this.labelCanNang.Size = new System.Drawing.Size(104, 25);
-            this.labelCanNang.TabIndex = 28;
-            this.labelCanNang.Text = "Cân nặng:";
-            // 
-            // labelxuatSu
-            // 
-            this.labelxuatSu.AutoSize = true;
-            this.labelxuatSu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelxuatSu.ForeColor = System.Drawing.Color.White;
-            this.labelxuatSu.Location = new System.Drawing.Point(45, 251);
-            this.labelxuatSu.Name = "labelxuatSu";
-            this.labelxuatSu.Size = new System.Drawing.Size(85, 25);
-            this.labelxuatSu.TabIndex = 29;
-            this.labelxuatSu.Text = "Xuất sứ:";
-            // 
-            // labelKichThuoc
-            // 
-            this.labelKichThuoc.AutoSize = true;
-            this.labelKichThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKichThuoc.ForeColor = System.Drawing.Color.White;
-            this.labelKichThuoc.Location = new System.Drawing.Point(363, 251);
-            this.labelKichThuoc.Name = "labelKichThuoc";
-            this.labelKichThuoc.Size = new System.Drawing.Size(110, 25);
-            this.labelKichThuoc.TabIndex = 30;
-            this.labelKichThuoc.Text = "Kích thước:";
             // 
             // guna2Elipse1
             // 
