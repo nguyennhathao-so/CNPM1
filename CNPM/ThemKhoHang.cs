@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace CNPM
 {
     public partial class ThemKhoHang : Form
     {
+        private string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+
         public ThemKhoHang()
         {
             InitializeComponent();
@@ -15,21 +16,49 @@ namespace CNPM
 
         private void ThemKhoHang_Load(object sender, EventArgs e)
         {
-            LoadCategories();  // Load categories if needed
+            LoadCategories();  // Load categories into ComboBox
             SetNextProductID(); // Set the next product ID when the form loads
         }
 
+        // Load categories into ComboBox
         private void LoadCategories()
         {
-            // Optionally load categories into a ComboBox if required
-            // string connectionString = @"YourConnectionString";
-            // string query = "SELECT CategoryID, CategoryName FROM Category";
-            // Populate the ComboBox if you have one for categories
+            string query = "SELECT CategoryID, CategoryName FROM Category";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable categories = new DataTable();
+                    adapter.Fill(categories);
+
+                    // Bind the ComboBox to the Category data
+                    guna2ComboBox1.DataSource = categories;
+                    guna2ComboBox1.DisplayMember = "CategoryName"; // Display the category name in the ComboBox
+                    guna2ComboBox1.ValueMember = "CategoryID"; // Use the CategoryID for inserting into the database
+                }
+            }
+        }
+        private bool ValidateForm()
+        {
+            // Validate numeric fields, including removing any non-numeric characters
+            if (string.IsNullOrEmpty(Tensp.Text) ||
+                string.IsNullOrEmpty(GiaSp.Text) ||
+                !decimal.TryParse(GiaSp.Text, out _) ||  // Validate price
+                !int.TryParse(Soluong.Text, out _) ||    // Validate stock
+                !decimal.TryParse(cannang.Text.Replace("kg", "").Trim(), out _))  // Validate weight, remove "kg" unit
+            {
+                MessageBox.Show("Please enter valid values for product fields.");
+                return false;
+            }
+
+            return true;
         }
 
         private void SetNextProductID()
         {
-            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
             string query = "SELECT ISNULL(MAX(ProductID), 0) + 1 FROM Products";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -46,41 +75,58 @@ namespace CNPM
             this.Close();
         }
 
-        private void LuuKhoHang_Click(object sender, EventArgs e)
+        // Add new product to the Products table, including the selected CategoryID
+        private void AddNewProduct()
         {
-            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = @"INSERT INTO Products (ProductID, ProductName, CategoryName, Price, Description, Origin, Quantity, Weight, Size) 
-                                     VALUES (@ProductID, @ProductName, @CategoryName, @Price, @Description, @Origin, @Quantity, @Weight, @Size)";
+                    // Query to insert new product into Products table (no need for ProductID as it's auto-increment)
+                    string query = @"INSERT INTO Products (ProductName, CategoryID, Price, Description, Stock, Weight, Size,Trademark, Origin)
+                             VALUES (@ProductName, @CategoryID, @Price, @Description, @Stock, @Weight, @Size, @Trademark, @Origin)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@ProductID", Masp.Text); // Use the auto-generated ID
-                        cmd.Parameters.AddWithValue("@ProductName", Tensp.Text);
-                        cmd.Parameters.AddWithValue("@CategoryName", NganhHang.Text); // Directly using TextBox
-                        cmd.Parameters.AddWithValue("@Price", decimal.Parse(GiaSp.Text));
-                        cmd.Parameters.AddWithValue("@Description", MoTaKhoHang.Text);
-                        cmd.Parameters.AddWithValue("@Origin", XuatXu.Text);
-                        cmd.Parameters.AddWithValue("@Quantity", int.Parse(Soluong.Text));
-                        cmd.Parameters.AddWithValue("@Weight", cannang.Text);
-                        cmd.Parameters.AddWithValue("@Size", kichthuoc.Text);
+                        cmd.Parameters.AddWithValue("@ProductName", Tensp.Text);  // Product Name TextBox
+                        cmd.Parameters.AddWithValue("@CategoryID", (int)guna2ComboBox1.SelectedValue);  // Get selected CategoryID from ComboBox as int
+                        cmd.Parameters.AddWithValue("@Price", decimal.Parse(GiaSp.Text, System.Globalization.CultureInfo.InvariantCulture));  // For price
+                        cmd.Parameters.AddWithValue("@Description", MoTaKhoHang.Text);  // Description TextBox
+                        cmd.Parameters.AddWithValue("@Stock", Convert.ToInt32(Soluong.Text));  // Stock TextBox
+                        cmd.Parameters.AddWithValue("@Weight", Convert.ToDecimal(cannang.Text.Replace("kg", "").Trim()));  // Weight TextBox (remove "kg" unit)
+                        cmd.Parameters.AddWithValue("@Size", kichthuoc.Text);  // Size TextBox
+                        cmd.Parameters.AddWithValue("@Trademark", NhaSX.Text);  // Size TextBox
+                        cmd.Parameters.AddWithValue("@Origin", XuatXu.Text);  // Size TextBox
 
-                        cmd.ExecuteNonQuery(); // Execute the insert command
+
+
+                        cmd.ExecuteNonQuery();  // Execute query
                     }
-                }
 
-                MessageBox.Show("Sản phẩm đã được thêm thành công!");
-                this.Close(); // Close the form after saving
+                    MessageBox.Show("Product added successfully!");
+                    ClearForm();  // Optionally, clear the form after adding the product
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thêm sản phẩm: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
+        }
+        private void ClearForm()
+        {
+            Tensp.Clear();
+            GiaSp.Clear();
+            MoTaKhoHang.Clear();
+            Soluong.Clear();
+            cannang.Clear();
+            kichthuoc.Clear();
+            guna2ComboBox1.SelectedIndex = -1; // Reset category selection
+        }
+
+        private void LuuKhoHang_Click(object sender, EventArgs e)
+        {
+            AddNewProduct();
         }
 
         private void nenChiTiet_Paint(object sender, PaintEventArgs e)

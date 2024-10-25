@@ -16,8 +16,37 @@ namespace CNPM
             LoadProductData();
             // Sự kiện double click trên DataGridView
             guna2DataGridView1.CellDoubleClick += Guna2DataGridView1_CellDoubleClick;
+            TextBoxPhi.TextChanged += TextBoxPhi_TextChanged;
+            tien1.TextChanged += CalculateRemainingAmount;  // Tổng tiền sản phẩm
+            tien2.TextChanged += CalculateRemainingAmount;  // Phí vận chuyển
+            tien3.TextChanged += CalculateRemainingAmount;  // Giảm giá
+            tien4.TextChanged += CalculateRemainingAmount;  // Đã thanh toán
         }
+        private void TextBoxPhi_TextChanged(object sender, EventArgs e)
+        {
+            // Khi người dùng nhập vào TextBoxPhi, giá trị sẽ được cập nhật vào TextBoxPhiVanChuyen
+            tien2.Text = TextBoxPhi.Text;
+        }
+        private void CalculateRemainingAmount(object sender, EventArgs e)
+        {
+            // Lấy giá trị từ các TextBox và chuyển sang kiểu số
+            decimal totalAmount = 0;
+            decimal shippingFee = 0;
+            decimal discount = 0;
+            decimal paidAmount = 0;
 
+            // Sử dụng TryParse để tránh lỗi nếu giá trị không hợp lệ
+            decimal.TryParse(tien1.Text, out totalAmount);   // Tổng tiền sản phẩm
+            decimal.TryParse(tien2.Text, out shippingFee);   // Phí vận chuyển
+            decimal.TryParse(tien3.Text, out discount);   // Giảm giá
+            decimal.TryParse(tien4.Text, out paidAmount);   // Đã thanh toán
+
+            // Tính số tiền còn lại
+            decimal remainingAmount = (totalAmount + shippingFee - discount) - paidAmount;
+
+            // Cập nhật giá trị cho TextBoxTien5 (Số tiền còn lại)
+            tien5.Text = remainingAmount.ToString("#,##0");
+        }
         // Tải sản phẩm từ cơ sở dữ liệu lên DataGridView
         private DataTable dataTable;
         private void LoadProductData()
@@ -106,17 +135,19 @@ namespace CNPM
         }
 
         // Thêm thông tin vận chuyển vào bảng Shipping2 và trả về ShippingID
-        private Guid AddShippingInfo(SqlConnection conn, SqlTransaction transaction)
+        // Chèn thông tin vận chuyển vào bảng Shipping2 và trả về ShippingID
+        private Guid AddShippingInfo(SqlConnection conn, SqlTransaction transaction, string orderId)
         {
             Guid shippingId = Guid.NewGuid();  // Ensure this is a valid GUID
 
-            string query = @"INSERT INTO Shipping2 (ShippingID, ShippingCo, ShippingFee, ShippingCode) 
-                     VALUES (@ShippingID, @ShippingCo, @ShippingFee, @ShippingCode)";
+            string query = @"INSERT INTO Shipping2 (ShippingID, OrderID, ShippingCo, ShippingFee, ShippingCode) 
+                     VALUES (@ShippingID, @OrderID, @ShippingCo, @ShippingFee, @ShippingCode)";
 
             using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
             {
                 // Ensure ShippingID is passed as a GUID
                 cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;
+                cmd.Parameters.AddWithValue("@OrderID", orderId);  // Ensure OrderID is passed correctly
                 cmd.Parameters.AddWithValue("@ShippingCo", TextBoxDonViVanChuyen.Text);
                 cmd.Parameters.AddWithValue("@ShippingFee", decimal.Parse(TextBoxPhi.Text));
                 cmd.Parameters.AddWithValue("@ShippingCode", TextBoxMaVanChuyen.Text);
@@ -126,7 +157,6 @@ namespace CNPM
 
             return shippingId;  // Return the valid GUID
         }
-
         // Thêm đơn hàng với OrderID tự sinh và liên kết với thông tin vận chuyển
         private string AddOrder(SqlConnection conn, SqlTransaction transaction, int customerId, Guid shippingId)
         {
@@ -192,11 +222,11 @@ namespace CNPM
                     // 1. Thêm hoặc cập nhật thông tin khách hàng và lấy CustomerID (IDENTITY)
                     int customerId = AddOrUpdateCustomer(conn, transaction);
 
-                    // 2. Thêm thông tin vận chuyển và lấy ShippingID (GUID)
-                    Guid shippingId = AddShippingInfo(conn, transaction);
+                    // 2. Tạo đơn hàng và lấy OrderID (GUID)
+                    string orderId = AddOrder(conn, transaction, customerId, Guid.NewGuid());
 
-                    // 3. Tạo đơn hàng và lấy OrderID (GUID)
-                    string orderId = AddOrder(conn, transaction, customerId, shippingId);
+                    // 3. Thêm thông tin vận chuyển và lấy ShippingID (GUID) - truyền OrderID
+                    Guid shippingId = AddShippingInfo(conn, transaction, orderId);  // Truyền OrderID vào đây
 
                     // 4. Thêm chi tiết sản phẩm vào đơn hàng
                     AddOrderDetails(conn, transaction, orderId);
