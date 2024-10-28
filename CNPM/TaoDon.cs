@@ -1,64 +1,86 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
-
+//code1
 namespace CNPM
 {
     public partial class TaoDon : UserControl
     {
-        private decimal selectedProductPrice = 0;  // Lưu giá sản phẩm đã chọn
         private string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+        private DataTable searchProductsTable;
+        private DataTable selectedProductsTable;
 
         public TaoDon()
         {
             InitializeComponent();
             LoadProductData();
-            // Sự kiện double click trên DataGridView
-            guna2DataGridView1.CellDoubleClick += Guna2DataGridView1_CellDoubleClick;
+
+            // Gán sự kiện double-click và các sự kiện liên quan đến TextBox
+            guna2DataGridView1.CellDoubleClick += guna2DataGridView1_CellDoubleClick;
             TextBoxPhi.TextChanged += TextBoxPhi_TextChanged;
-            tien1.TextChanged += CalculateRemainingAmount;  // Tổng tiền sản phẩm
-            tien2.TextChanged += CalculateRemainingAmount;  // Phí vận chuyển
-            tien3.TextChanged += CalculateRemainingAmount;  // Giảm giá
-            tien4.TextChanged += CalculateRemainingAmount;  // Đã thanh toán
+            tien1.TextChanged += CalculateRemainingAmount;
+            tien2.TextChanged += CalculateRemainingAmount;
+            tien3.TextChanged += CalculateRemainingAmount;
+            tien4.TextChanged += CalculateRemainingAmount;
+
+            // Tạo bảng để lưu sản phẩm đã chọn (giỏ hàng) và hiển thị trong DataGridView
+            selectedProductsTable = new DataTable();
+            selectedProductsTable.Columns.Add("Mã Sản Phẩm");
+            selectedProductsTable.Columns.Add("Tên sản phẩm");
+            selectedProductsTable.Columns.Add("Giá sản phẩm", typeof(decimal));
+            selectedProductsTable.Columns.Add("Số lượng", typeof(int));
+
+            // Ban đầu không hiển thị sản phẩm nào trong giỏ hàng (DataGridView trống)
+            InitializeDataGridView(); // Thiết lập các cột ban đầu
         }
+
+        // Thiết lập cột cho DataGridView nhưng không có dữ liệu ban đầu
+        private void InitializeDataGridView()
+        {
+            guna2DataGridView1.AutoGenerateColumns = false;  // Tắt tự động tạo cột
+            guna2DataGridView1.Columns.Clear();  // Xóa các cột hiện tại
+
+            // Định nghĩa các cột hiển thị
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { HeaderText = "Mã Sản Phẩm", DataPropertyName = "Mã Sản Phẩm" });
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { HeaderText = "Tên sản phẩm", DataPropertyName = "Tên sản phẩm" });
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { HeaderText = "Số lượng", DataPropertyName = "Số lượng" });
+            guna2DataGridView1.Columns.Add(new DataGridViewTextBoxColumn() { HeaderText = "Giá sản phẩm", DataPropertyName = "Giá sản phẩm" });
+
+            guna2DataGridView1.DataSource = null;  // Ban đầu không có dữ liệu
+        }
+
         private void TextBoxPhi_TextChanged(object sender, EventArgs e)
         {
-            // Khi người dùng nhập vào TextBoxPhi, giá trị sẽ được cập nhật vào TextBoxPhiVanChuyen
             tien2.Text = TextBoxPhi.Text;
         }
+
         private void CalculateRemainingAmount(object sender, EventArgs e)
         {
-            // Lấy giá trị từ các TextBox và chuyển sang kiểu số
             decimal totalAmount = 0;
             decimal shippingFee = 0;
             decimal discount = 0;
             decimal paidAmount = 0;
 
-            // Sử dụng TryParse để tránh lỗi nếu giá trị không hợp lệ
             decimal.TryParse(tien1.Text, out totalAmount);   // Tổng tiền sản phẩm
             decimal.TryParse(tien2.Text, out shippingFee);   // Phí vận chuyển
-            decimal.TryParse(tien3.Text, out discount);   // Giảm giá
-            decimal.TryParse(tien4.Text, out paidAmount);   // Đã thanh toán
+            decimal.TryParse(tien3.Text, out discount);      // Giảm giá
+            decimal.TryParse(tien4.Text, out paidAmount);    // Đã thanh toán
 
             // Tính số tiền còn lại
             decimal remainingAmount = (totalAmount + shippingFee - discount) - paidAmount;
-
-            // Cập nhật giá trị cho TextBoxTien5 (Số tiền còn lại)
             tien5.Text = remainingAmount.ToString("#,##0");
         }
-        // Tải sản phẩm từ cơ sở dữ liệu lên DataGridView
-        private DataTable dataTable;
+
+        // LoadProductData method to ensure columns are loaded with proper names
         private void LoadProductData()
         {
             try
             {
-                guna2DataGridView1.AutoGenerateColumns = false;
-                string query = @"SELECT p.ProductID AS 'Mã Sản Phẩm', p.ProductName AS 'Tên sản phẩm', 
-                                p.Stock - SUM(ISNULL(od.Quantity, 0)) AS 'Số lượng', p.Price AS 'Giá sản phẩm' 
-                                FROM Products p
-                                LEFT JOIN OrderDetails od ON p.ProductID = od.ProductID
-                                GROUP BY p.ProductID, p.ProductName, p.Stock, p.Price";
+                // Query to select product details
+                string query = @"SELECT ProductID AS 'Mã Sản Phẩm', ProductName AS 'Tên sản phẩm', Price AS 'Giá sản phẩm' FROM Products";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -67,16 +89,14 @@ namespace CNPM
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
-                            dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-                            guna2DataGridView1.DataSource = dataTable;
-                            this.Column1.DataPropertyName = "Mã Sản Phẩm";
-                            this.Column2.DataPropertyName = "Tên sản phẩm";
-                            this.Column3.DataPropertyName = "Số lượng";
-                            this.Column4.DataPropertyName = "Giá sản phẩm";
+                            searchProductsTable = new DataTable();
+                            adapter.Fill(searchProductsTable); // Fill the DataTable with product data
                         }
                     }
                 }
+
+                // Bind the product data to the DataGridView
+                guna2DataGridView1.DataSource = searchProductsTable;
             }
             catch (Exception ex)
             {
@@ -86,41 +106,84 @@ namespace CNPM
 
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
-            string filterText = guna2TextBox1.Text.Trim().ToLower();
-            DataView dv = dataTable.DefaultView;
-            dv.RowFilter = string.Format("[Tên sản phẩm] LIKE '%{0}%'", filterText);
-            guna2DataGridView1.DataSource = dv.ToTable();
-        }
+            try
+            {
+                string searchText = guna2TextBox1.Text.Trim().ToLower();
 
-        // Xử lý sự kiện double click vào sản phẩm trong DataGridView
-        private void Guna2DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    // Lọc dữ liệu sản phẩm theo từ khoá tìm kiếm
+                    DataView dv = searchProductsTable.DefaultView;
+                    dv.RowFilter = $"[Tên sản phẩm] LIKE '%{searchText.Replace("'", "''")}%'"; // Lọc dữ liệu
+                    guna2DataGridView1.DataSource = dv.ToTable(); // Hiển thị kết quả lọc
+                }
+                else
+                {
+                    // Khi thanh tìm kiếm trống, chỉ hiển thị lại các sản phẩm đã chọn
+                    guna2DataGridView1.DataSource = selectedProductsTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm sản phẩm: " + ex.Message);
+            }
+        }
+        // Sự kiện double-click để thêm sản phẩm vào giỏ hàng
+
+        private void guna2DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                DataRow selectedRow = dataTable.Rows[e.RowIndex];
-                decimal price = Convert.ToDecimal(selectedRow["Giá sản phẩm"]);
-                selectedProductPrice = price;  // Lưu giá sản phẩm đã chọn
+                // Ensure the exact column indices match your DataGridView columns
+                string productId = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(); // Column 0 for ProductID
+                string productName = guna2DataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(); // Column 1 for ProductName
+                decimal productPrice = Convert.ToDecimal(guna2DataGridView1.Rows[e.RowIndex].Cells[3].Value); // Column 2 for Price
 
-                // Thiết lập số lượng là 1 khi double-click
-                int quantity = 1;
+                // Add or update product in the selectedProductsTable
+                DataRow existingRow = selectedProductsTable.Select($"[Mã Sản Phẩm] = '{productId}'").FirstOrDefault();
+                if (existingRow != null)
+                {
+                    int currentQuantity = (int)existingRow["Số lượng"];
+                    existingRow["Số lượng"] = currentQuantity + 1; // Increase the quantity
+                }
+                else
+                {
+                    DataRow newRow = selectedProductsTable.NewRow();
+                    newRow["Mã Sản Phẩm"] = productId;
+                    newRow["Tên sản phẩm"] = productName;
+                    newRow["Giá sản phẩm"] = productPrice; // Ensure price is being set correctly
+                    newRow["Số lượng"] = 1; // Initialize quantity
+                    selectedProductsTable.Rows.Add(newRow);
+                }
 
-                // Hiển thị giá và số lượng trong giao diện (nếu cần)
-                tien1.Text = price.ToString("#,##0");
+                // Update DataGridView to reflect selected products
+                guna2DataGridView1.DataSource = selectedProductsTable;
+
+                // Update total price
+                UpdateTotalPrice();
             }
         }
 
-        // Sinh OrderID theo định dạng GUID
-        private string GenerateOrderId()
+        private void UpdateTotalPrice()
         {
-            return Guid.NewGuid().ToString();  // Tạo GUID mới cho OrderID
+            decimal totalPrice = 0;
+            foreach (DataRow row in selectedProductsTable.Rows)
+            {
+                decimal productPrice = Convert.ToDecimal(row["Giá sản phẩm"]);
+                int quantity = Convert.ToInt32(row["Số lượng"]);
+                totalPrice += productPrice * quantity;
+            }
+
+            // Update the total amount display (adjust this to reflect where the total price is shown)
+            tien1.Text = totalPrice.ToString("#,##0");
         }
 
-        // Thêm hoặc cập nhật khách hàng (CustomerID là cột IDENTITY)
+        // Thêm hoặc cập nhật khách hàng
         private int AddOrUpdateCustomer(SqlConnection conn, SqlTransaction transaction)
         {
             string query = @"INSERT INTO Customers (Name, Phone, Email, DateOfBirth, Address) 
                              VALUES (@Name, @Phone, @Email, @DateOfBirth, @Address);
-                             SELECT SCOPE_IDENTITY();";  // Lấy CustomerID vừa tạo (IDENTITY)
+                             SELECT SCOPE_IDENTITY();";
 
             using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
             {
@@ -130,24 +193,22 @@ namespace CNPM
                 cmd.Parameters.AddWithValue("@DateOfBirth", NgaySinh.Value);
                 cmd.Parameters.AddWithValue("@Address", TextBoxDiaChi.Text);
 
-                return Convert.ToInt32(cmd.ExecuteScalar());  // Trả về CustomerID từ SCOPE_IDENTITY()
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
-        // Thêm thông tin vận chuyển vào bảng Shipping2 và trả về ShippingID
-        // Chèn thông tin vận chuyển vào bảng Shipping2 và trả về ShippingID
+        // Thêm thông tin vận chuyển
         private Guid AddShippingInfo(SqlConnection conn, SqlTransaction transaction, string orderId)
         {
-            Guid shippingId = Guid.NewGuid();  // Ensure this is a valid GUID
+            Guid shippingId = Guid.NewGuid();
 
             string query = @"INSERT INTO Shipping2 (ShippingID, OrderID, ShippingCo, ShippingFee, ShippingCode) 
                      VALUES (@ShippingID, @OrderID, @ShippingCo, @ShippingFee, @ShippingCode)";
 
             using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
             {
-                // Ensure ShippingID is passed as a GUID
                 cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;
-                cmd.Parameters.AddWithValue("@OrderID", orderId);  // Ensure OrderID is passed correctly
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
                 cmd.Parameters.AddWithValue("@ShippingCo", TextBoxDonViVanChuyen.Text);
                 cmd.Parameters.AddWithValue("@ShippingFee", decimal.Parse(TextBoxPhi.Text));
                 cmd.Parameters.AddWithValue("@ShippingCode", TextBoxMaVanChuyen.Text);
@@ -155,14 +216,14 @@ namespace CNPM
                 cmd.ExecuteNonQuery();
             }
 
-            return shippingId;  // Return the valid GUID
+            return shippingId;
         }
-        // Thêm đơn hàng với OrderID tự sinh và liên kết với thông tin vận chuyển
+
+        // Thêm đơn hàng
         private string AddOrder(SqlConnection conn, SqlTransaction transaction, int customerId, Guid shippingId)
         {
-            string orderId = GenerateOrderId();  // Tạo OrderID mới (GUID)
+            string orderId = Guid.NewGuid().ToString();
 
-            // Chèn dữ liệu vào bảng Orders, bao gồm ShippingAddress, ShippingCo và ShippingID
             string query = @"INSERT INTO Orders (OrderID, CustomerID, OrderDate, ShippingID, ShippingAddress, ShippingCo, TotalPrice, OrderStatus) 
                      VALUES (@OrderID, @CustomerID, @OrderDate, @ShippingID, @ShippingAddress, @ShippingCo, @TotalPrice, @OrderStatus)";
 
@@ -171,7 +232,7 @@ namespace CNPM
                 cmd.Parameters.Add("@OrderID", SqlDbType.UniqueIdentifier).Value = new Guid(orderId);
                 cmd.Parameters.AddWithValue("@CustomerID", customerId);
                 cmd.Parameters.AddWithValue("@OrderDate", DateTime.Now);
-                cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;  // Ensure this is passed as GUID
+                cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;
                 cmd.Parameters.AddWithValue("@ShippingAddress", TextBoxDiaChi.Text);
                 cmd.Parameters.AddWithValue("@ShippingCo", TextBoxDonViVanChuyen.Text);
                 cmd.Parameters.AddWithValue("@TotalPrice", decimal.Parse(tien1.Text));
@@ -180,58 +241,45 @@ namespace CNPM
                 cmd.ExecuteNonQuery();
             }
 
-            return orderId;  // Trả về OrderID đã tạo (GUID)
+            return orderId;
         }
 
-        // Thêm chi tiết đơn hàng vào bảng OrderDetails
+        // Thêm chi tiết đơn hàng
         private void AddOrderDetails(SqlConnection conn, SqlTransaction transaction, string orderId)
         {
-            foreach (DataGridViewRow row in guna2DataGridView1.SelectedRows)
+            foreach (DataRow row in selectedProductsTable.Rows)
             {
                 string query = @"INSERT INTO OrderDetails (OrderID, ProductID, Quantity, UnitPrice) 
                                  VALUES (@OrderID, @ProductID, @Quantity, @UnitPrice)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
                 {
-                    cmd.Parameters.AddWithValue("@OrderID", orderId);  // Sử dụng GUID cho OrderID
-                    cmd.Parameters.AddWithValue("@ProductID", row.Cells[0].Value);
-
-                    // Thiết lập số lượng là 1
-                    cmd.Parameters.AddWithValue("@Quantity", 1);  // Số lượng cố định là 1
-
-                    cmd.Parameters.AddWithValue("@UnitPrice", row.Cells[3].Value);  // Giá sản phẩm
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    cmd.Parameters.AddWithValue("@ProductID", row["Mã Sản Phẩm"]);
+                    cmd.Parameters.AddWithValue("@Quantity", row["Số lượng"]);
+                    cmd.Parameters.AddWithValue("@UnitPrice", row["Giá sản phẩm"]);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        // Xử lý sự kiện nhấn nút "Tạo Đơn"
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlTransaction transaction = null;
                 try
                 {
                     conn.Open();
-                    transaction = conn.BeginTransaction();  // Bắt đầu giao dịch
+                    transaction = conn.BeginTransaction();
 
-                    // 1. Thêm hoặc cập nhật thông tin khách hàng và lấy CustomerID (IDENTITY)
                     int customerId = AddOrUpdateCustomer(conn, transaction);
-
-                    // 2. Tạo đơn hàng và lấy OrderID (GUID)
                     string orderId = AddOrder(conn, transaction, customerId, Guid.NewGuid());
-
-                    // 3. Thêm thông tin vận chuyển và lấy ShippingID (GUID) - truyền OrderID
-                    Guid shippingId = AddShippingInfo(conn, transaction, orderId);  // Truyền OrderID vào đây
-
-                    // 4. Thêm chi tiết sản phẩm vào đơn hàng
+                    Guid shippingId = AddShippingInfo(conn, transaction, orderId);
                     AddOrderDetails(conn, transaction, orderId);
 
-                    transaction.Commit();  // Xác nhận giao dịch nếu mọi thứ thành công
+                    transaction.Commit();
                     MessageBox.Show("Đơn hàng đã được tạo thành công!");
                 }
                 catch (Exception ex)
@@ -239,15 +287,10 @@ namespace CNPM
                     MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
                     if (transaction != null)
                     {
-                        transaction.Rollback();  // Hoàn tác giao dịch nếu có lỗi
+                        transaction.Rollback();
                     }
                 }
             }
-        }
-
-        private void TaoDon_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
