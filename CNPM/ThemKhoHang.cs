@@ -18,7 +18,12 @@ namespace CNPM
         {
             LoadCategories();  // Load categories into ComboBox
             SetNextProductID(); // Set the next product ID when the form loads
+
+            // Populate Bảo Hành ComboBox with "Có" and "Không"
+            baohanh.Items.Add("Có");
+            baohanh.Items.Add("Không");
         }
+
 
         // Load categories into ComboBox
         private void LoadCategories()
@@ -38,6 +43,7 @@ namespace CNPM
                     guna2ComboBox1.DataSource = categories;
                     guna2ComboBox1.DisplayMember = "CategoryName"; // Display the category name in the ComboBox
                     guna2ComboBox1.ValueMember = "CategoryID"; // Use the CategoryID for inserting into the database
+                    
                 }
             }
         }
@@ -48,7 +54,7 @@ namespace CNPM
                 string.IsNullOrEmpty(GiaSp.Text) ||
                 !decimal.TryParse(GiaSp.Text, out _) ||  // Validate price
                 !int.TryParse(Soluong.Text, out _) ||    // Validate stock
-                !decimal.TryParse(cannang.Text.Replace("kg", "").Trim(), out _))  // Validate weight, remove "kg" unit
+                !decimal.TryParse(cannang.Text, out _))  // Validate weight, remove "kg" unit
             {
                 MessageBox.Show("Please enter valid values for product fields.");
                 return false;
@@ -84,8 +90,8 @@ namespace CNPM
                 {
                     conn.Open();
                     // Query to insert new product into Products table (no need for ProductID as it's auto-increment)
-                    string query = @"INSERT INTO Products (ProductName, CategoryID, Price, Description, Stock, Weight, Size,Trademark, Origin)
-                             VALUES (@ProductName, @CategoryID, @Price, @Description, @Stock, @Weight, @Size, @Trademark, @Origin)";
+                    string query = @"INSERT INTO Products (ProductName, CategoryID, Price, Description, Stock, Weight, Size, Trademark, Origin, Warranty)
+                             VALUES (@ProductName, @CategoryID, @Price, @Description, @Stock, @Weight, @Size, @Trademark, @Origin, @Warranty)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -96,10 +102,9 @@ namespace CNPM
                         cmd.Parameters.AddWithValue("@Stock", Convert.ToInt32(Soluong.Text));  // Stock TextBox
                         cmd.Parameters.AddWithValue("@Weight", Convert.ToDecimal(cannang.Text.Replace("kg", "").Trim()));  // Weight TextBox (remove "kg" unit)
                         cmd.Parameters.AddWithValue("@Size", kichthuoc.Text);  // Size TextBox
-                        cmd.Parameters.AddWithValue("@Trademark", NhaSX.Text);  // Size TextBox
-                        cmd.Parameters.AddWithValue("@Origin", XuatXu.Text);  // Size TextBox
-
-
+                        cmd.Parameters.AddWithValue("@Trademark", NhaSX.Text);  // Trademark TextBox
+                        cmd.Parameters.AddWithValue("@Origin", XuatXu.Text);  // Origin TextBox
+                        cmd.Parameters.AddWithValue("@Warranty", baohanh.SelectedItem?.ToString() ?? "Không");  // Warranty ComboBox selected item
 
                         cmd.ExecuteNonQuery();  // Execute query
                     }
@@ -122,16 +127,30 @@ namespace CNPM
             cannang.Clear();
             kichthuoc.Clear();
             guna2ComboBox1.SelectedIndex = -1; // Reset category selection
+            baohanh.SelectedIndex = -1; // Reset warranty selection
         }
+
 
         private void LuuKhoHang_Click(object sender, EventArgs e)
         {
-            AddNewProduct();
+            // Show the confirmation dialog
+           
+
+            // Check if the user clicked OK
+            
+                AddNewProduct(); // Proceed to add the product
+            
         }
+
 
         private void nenChiTiet_Paint(object sender, PaintEventArgs e)
         {
             // Custom painting code can go here if needed
+        }
+
+        private void baohanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace CNPM
 {
     public partial class DonHang : UserControl
     {
-        string connectstring = @"Data Source=LAPTOP-Q7I59CRL\SQLEXPRESS;Integrated Security=True";
+        string connectstring = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
         SqlConnection con;
         SqlCommand cmd;
         SqlDataAdapter adt;

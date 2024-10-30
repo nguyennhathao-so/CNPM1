@@ -12,10 +12,28 @@ namespace CNPM
 {
     public partial class ChiTietKhoHang : Form
     {
-        public ChiTietKhoHang()
+        public ChiTietKhoHang(
+    string masp, string productName, string category, string stock,
+    string trademark, string origin, string warranty, string weight,
+    string size, string description,string daban,string price)
         {
             InitializeComponent();
+
+            // Assign these values to respective textboxes or labels
+            MaSP.Text = masp; // ma sp
+            textboxtensanpham.Text = productName;// ten sp
+            textboxnganhhang.Text = category; // nganh hang
+            textboxkho.Text = stock; // ton kho
+            thuonghieu.Text = trademark; // thuonghieu
+            textboxxuatxu.Text = origin;// xuat xu
+            textboxbaohanh.Text = warranty; // bao hanh
+            textboxcannang.Text = weight; // can nang
+            textboxkichthuoc.Text = size; // kich thuoc
+            textboxmota.Text = description; // mo ta
+            textboxdaban.Text = daban; // da ban 
+            textboxgia.Text = price; // gia
         }
+
 
         private void ChiTietKhoHang_Load(object sender, EventArgs e)
         {
@@ -31,5 +49,7 @@ namespace CNPM
         {
 
         }
+
+        
     }
 }

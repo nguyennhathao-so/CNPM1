@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaoDon));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -56,7 +56,6 @@
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.TextBoxPhi = new Guna.UI2.WinForms.Guna2TextBox();
             this.TextBoxMaVanChuyen = new Guna.UI2.WinForms.Guna2TextBox();
-            this.TextBoxDonViVanChuyen = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.tien5 = new Guna.UI2.WinForms.Guna2TextBox();
             this.tien4 = new Guna.UI2.WinForms.Guna2TextBox();
@@ -81,6 +80,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ComboBoxDonViVanChuyen = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -479,9 +479,9 @@
             this.guna2Panel3.BorderRadius = 20;
             this.guna2Panel3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
             this.guna2Panel3.BorderThickness = 1;
+            this.guna2Panel3.Controls.Add(this.ComboBoxDonViVanChuyen);
             this.guna2Panel3.Controls.Add(this.TextBoxPhi);
             this.guna2Panel3.Controls.Add(this.TextBoxMaVanChuyen);
-            this.guna2Panel3.Controls.Add(this.TextBoxDonViVanChuyen);
             this.guna2Panel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
             this.guna2Panel3.Location = new System.Drawing.Point(1030, 190);
             this.guna2Panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -503,7 +503,7 @@
             this.TextBoxPhi.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPhi.ForeColor = System.Drawing.Color.Black;
             this.TextBoxPhi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TextBoxPhi.Location = new System.Drawing.Point(30, 166);
+            this.TextBoxPhi.Location = new System.Drawing.Point(30, 165);
             this.TextBoxPhi.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextBoxPhi.Name = "TextBoxPhi";
             this.TextBoxPhi.PasswordChar = '\0';
@@ -512,6 +512,7 @@
             this.TextBoxPhi.SelectedText = "";
             this.TextBoxPhi.Size = new System.Drawing.Size(214, 41);
             this.TextBoxPhi.TabIndex = 2;
+            this.TextBoxPhi.Tag = "Đơn vị vận chuyển";
             // 
             // TextBoxMaVanChuyen
             // 
@@ -536,30 +537,7 @@
             this.TextBoxMaVanChuyen.SelectedText = "";
             this.TextBoxMaVanChuyen.Size = new System.Drawing.Size(333, 41);
             this.TextBoxMaVanChuyen.TabIndex = 1;
-            // 
-            // TextBoxDonViVanChuyen
-            // 
-            this.TextBoxDonViVanChuyen.BorderRadius = 14;
-            this.TextBoxDonViVanChuyen.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TextBoxDonViVanChuyen.DefaultText = "";
-            this.TextBoxDonViVanChuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TextBoxDonViVanChuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TextBoxDonViVanChuyen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TextBoxDonViVanChuyen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TextBoxDonViVanChuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
-            this.TextBoxDonViVanChuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TextBoxDonViVanChuyen.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDonViVanChuyen.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxDonViVanChuyen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TextBoxDonViVanChuyen.Location = new System.Drawing.Point(30, 41);
-            this.TextBoxDonViVanChuyen.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.TextBoxDonViVanChuyen.Name = "TextBoxDonViVanChuyen";
-            this.TextBoxDonViVanChuyen.PasswordChar = '\0';
-            this.TextBoxDonViVanChuyen.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.TextBoxDonViVanChuyen.PlaceholderText = "Đơn vị vận chuyển";
-            this.TextBoxDonViVanChuyen.SelectedText = "";
-            this.TextBoxDonViVanChuyen.Size = new System.Drawing.Size(333, 41);
-            this.TextBoxDonViVanChuyen.TabIndex = 0;
+            this.TextBoxMaVanChuyen.Tag = "Đơn vị vận chuyển";
             // 
             // guna2Panel4
             // 
@@ -872,20 +850,20 @@
             // guna2DataGridView1
             // 
             this.guna2DataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.guna2DataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.guna2DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.guna2DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.guna2DataGridView1.ColumnHeadersHeight = 22;
             this.guna2DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.guna2DataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -893,14 +871,14 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.Black;
             this.guna2DataGridView1.Location = new System.Drawing.Point(72, 244);
             this.guna2DataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -960,6 +938,27 @@
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
+            // ComboBoxDonViVanChuyen
+            // 
+            this.ComboBoxDonViVanChuyen.BackColor = System.Drawing.Color.Transparent;
+            this.ComboBoxDonViVanChuyen.BorderRadius = 13;
+            this.ComboBoxDonViVanChuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ComboBoxDonViVanChuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxDonViVanChuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
+            this.ComboBoxDonViVanChuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxDonViVanChuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxDonViVanChuyen.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxDonViVanChuyen.ForeColor = System.Drawing.Color.Black;
+            this.ComboBoxDonViVanChuyen.ItemHeight = 20;
+            this.ComboBoxDonViVanChuyen.Items.AddRange(new object[] {
+            "Đơn vị vận chuyển"});
+            this.ComboBoxDonViVanChuyen.Location = new System.Drawing.Point(30, 40);
+            this.ComboBoxDonViVanChuyen.Name = "ComboBoxDonViVanChuyen";
+            this.ComboBoxDonViVanChuyen.Size = new System.Drawing.Size(333, 26);
+            this.ComboBoxDonViVanChuyen.StartIndex = 0;
+            this.ComboBoxDonViVanChuyen.TabIndex = 3;
+            this.ComboBoxDonViVanChuyen.Tag = "Đơn vị vận chuyển";
+            // 
             // TaoDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -984,6 +983,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TaoDon";
             this.Size = new System.Drawing.Size(1617, 932);
+            this.Load += new System.EventHandler(this.TaoDon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
@@ -1030,7 +1030,6 @@
         private Guna.UI2.WinForms.Guna2TextBox TextBoxTinh;
         private Guna.UI2.WinForms.Guna2TextBox TextBoxPhi;
         private Guna.UI2.WinForms.Guna2TextBox TextBoxMaVanChuyen;
-        private Guna.UI2.WinForms.Guna2TextBox TextBoxDonViVanChuyen;
         private System.Windows.Forms.Label labelPhiVanChuyen;
         private System.Windows.Forms.Label labelTongTien;
         private Guna.UI2.WinForms.Guna2CheckBox CheckBoxMienPhi;
@@ -1051,5 +1050,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private Guna.UI2.WinForms.Guna2ComboBox ComboBoxDonViVanChuyen;
     }
 }

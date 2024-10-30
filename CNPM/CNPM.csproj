@@ -97,11 +97,11 @@
     <Compile Include="ChinhSuacs.Designer.cs">
       <DependentUpon>ChinhSuacs.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChiTiet.cs">
+    <Compile Include="ChiTietDonHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChiTiet.Designer.cs">
-      <DependentUpon>ChiTiet.cs</DependentUpon>
+    <Compile Include="ChiTietDonHang.Designer.cs">
+      <DependentUpon>ChiTietDonHang.cs</DependentUpon>
     </Compile>
     <Compile Include="ChiTietKhoHang.cs">
       <SubType>Form</SubType>
@@ -185,8 +185,8 @@
     <EmbeddedResource Include="ChinhSuacs.resx">
       <DependentUpon>ChinhSuacs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChiTiet.resx">
-      <DependentUpon>ChiTiet.cs</DependentUpon>
+    <EmbeddedResource Include="ChiTietDonHang.resx">
+      <DependentUpon>ChiTietDonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChiTietKhoHang.resx">
       <DependentUpon>ChiTietKhoHang.cs</DependentUpon>

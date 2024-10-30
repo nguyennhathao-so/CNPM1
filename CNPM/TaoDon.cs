@@ -18,6 +18,13 @@ namespace CNPM
             InitializeComponent();
             LoadProductData();
 
+            ComboBoxDonViVanChuyen.Items.Add("OLEND");
+            ComboBoxDonViVanChuyen.Items.Add("ShoppoExpress");
+            ComboBoxDonViVanChuyen.Items.Add("TOKO");
+            ComboBoxDonViVanChuyen.Items.Add("Sendo");
+
+            // Default selection (optional)
+            ComboBoxDonViVanChuyen.SelectedIndex = 0;
             // Gán sự kiện double-click và các sự kiện liên quan đến TextBox
             guna2DataGridView1.CellDoubleClick += guna2DataGridView1_CellDoubleClick;
             TextBoxPhi.TextChanged += TextBoxPhi_TextChanged;
@@ -201,6 +208,7 @@ namespace CNPM
         private Guid AddShippingInfo(SqlConnection conn, SqlTransaction transaction, string orderId)
         {
             Guid shippingId = Guid.NewGuid();
+            string selectedShippingCo = ComboBoxDonViVanChuyen.SelectedItem?.ToString() ?? "Unknown";
 
             string query = @"INSERT INTO Shipping2 (ShippingID, OrderID, ShippingCo, ShippingFee, ShippingCode) 
                      VALUES (@ShippingID, @OrderID, @ShippingCo, @ShippingFee, @ShippingCode)";
@@ -209,7 +217,7 @@ namespace CNPM
             {
                 cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;
                 cmd.Parameters.AddWithValue("@OrderID", orderId);
-                cmd.Parameters.AddWithValue("@ShippingCo", TextBoxDonViVanChuyen.Text);
+                cmd.Parameters.AddWithValue("@ShippingCo", selectedShippingCo);  // Use selected shipping company
                 cmd.Parameters.AddWithValue("@ShippingFee", decimal.Parse(TextBoxPhi.Text));
                 cmd.Parameters.AddWithValue("@ShippingCode", TextBoxMaVanChuyen.Text);
 
@@ -219,10 +227,13 @@ namespace CNPM
             return shippingId;
         }
 
+
         // Thêm đơn hàng
+        // Method to add a new order and include the selected shipping company
         private string AddOrder(SqlConnection conn, SqlTransaction transaction, int customerId, Guid shippingId)
         {
             string orderId = Guid.NewGuid().ToString();
+            string selectedShippingCo = ComboBoxDonViVanChuyen.SelectedItem?.ToString() ?? "Unknown";
 
             string query = @"INSERT INTO Orders (OrderID, CustomerID, OrderDate, ShippingID, ShippingAddress, ShippingCo, TotalPrice, OrderStatus) 
                      VALUES (@OrderID, @CustomerID, @OrderDate, @ShippingID, @ShippingAddress, @ShippingCo, @TotalPrice, @OrderStatus)";
@@ -234,7 +245,7 @@ namespace CNPM
                 cmd.Parameters.AddWithValue("@OrderDate", DateTime.Now);
                 cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;
                 cmd.Parameters.AddWithValue("@ShippingAddress", TextBoxDiaChi.Text);
-                cmd.Parameters.AddWithValue("@ShippingCo", TextBoxDonViVanChuyen.Text);
+                cmd.Parameters.AddWithValue("@ShippingCo", selectedShippingCo);  // Use selected shipping company from ComboBox
                 cmd.Parameters.AddWithValue("@TotalPrice", decimal.Parse(tien1.Text));
                 cmd.Parameters.AddWithValue("@OrderStatus", "Processing");
 
@@ -276,7 +287,7 @@ namespace CNPM
 
                     int customerId = AddOrUpdateCustomer(conn, transaction);
                     string orderId = AddOrder(conn, transaction, customerId, Guid.NewGuid());
-                    Guid shippingId = AddShippingInfo(conn, transaction, orderId);
+                    Guid shippingId = AddShippingInfo(conn, transaction, orderId); // Use the correct `orderId` here
                     AddOrderDetails(conn, transaction, orderId);
 
                     transaction.Commit();
@@ -291,6 +302,12 @@ namespace CNPM
                     }
                 }
             }
+        }
+
+
+        private void TaoDon_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

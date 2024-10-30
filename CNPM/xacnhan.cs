@@ -17,6 +17,21 @@ namespace CNPM
             InitializeComponent();
         }
 
+        private void xacnhan_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void guna2OK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void huy_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

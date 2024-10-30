@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CNPM
 {
-    public partial class ChiTiet : Form
+    public partial class ChiTietDonHang : Form
     {
-        public ChiTiet()
+        public ChiTietDonHang()
         {
             InitializeComponent();
         }

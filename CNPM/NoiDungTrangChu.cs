@@ -9,6 +9,15 @@ namespace CNPM
     public partial class NoiDungTrangChu : UserControl
     {
         private Chart myNewChart;
+        private Timer refreshTimer;
+
+        private void InitializeTimer()
+        {
+            refreshTimer = new Timer();
+            refreshTimer.Interval = 5000; // Set interval to 5 seconds or any preferred interval
+            refreshTimer.Tick += (s, e) => LoadData();
+            refreshTimer.Start();
+        }
 
         public NoiDungTrangChu()
         {
@@ -17,6 +26,7 @@ namespace CNPM
             CreateNewChart();   // Create the new chart
             LoadChartData();    // Load data into the new chart
             LoadMetricsData();  // Load and display Doanh Số, Đơn Hàng, Tồn Kho in the panels
+            InitializeTimer();   // Start the timer for real-time updates
         }
 
         // Method to retrieve data from the SQL database and display it in the DataGridView
@@ -163,12 +173,11 @@ namespace CNPM
                         FROM Orders o 
                         WHERE YEAR(o.OrderDate) = 2023";
 
-                    // Fetch Tồn Kho (Total Quantity Sold as Stock)
+                    // Fetch Tồn Kho (Remaining Stock)
                     string stockQuery = @"
-                        SELECT SUM(od.Quantity) AS TonKho 
-                        FROM OrderDetails od
-                        JOIN Orders o ON od.OrderID = o.OrderID
-                        WHERE YEAR(o.OrderDate) = 2023";
+                        SELECT SUM(p.Stock - ISNULL(od.Quantity, 0)) AS TonKho
+                        FROM Products p
+                        LEFT JOIN OrderDetails od ON p.ProductID = od.ProductID";
 
                     using (SqlCommand revenueCommand = new SqlCommand(revenueQuery, con))
                     using (SqlCommand ordersCommand = new SqlCommand(ordersQuery, con))
@@ -176,15 +185,21 @@ namespace CNPM
                     {
                         decimal currentRevenue = Convert.ToDecimal(revenueCommand.ExecuteScalar());
                         textbox1.Text = (currentRevenue / 1_000_000).ToString("N0");  // Display in millions
+                        textbox1.TextAlign = HorizontalAlignment.Center;
 
                         int currentOrders = Convert.ToInt32(ordersCommand.ExecuteScalar());
                         textbox3.Text = currentOrders.ToString();  // Display orders count
+                        textbox3.TextAlign = HorizontalAlignment.Center;
+
 
                         int currentStock = Convert.ToInt32(stockCommand.ExecuteScalar());
-                        textbox5.Text = currentStock.ToString();  // Display total quantity sold
+                        textbox5.Text = currentStock.ToString();  // Display remaining stock
+                        textbox5.TextAlign = HorizontalAlignment.Center;
+
                     }
                 }
 
+                // Calculate and display percentage increases only for Doanh Số and Đơn Hàng
                 CalculateAndDisplayIncrease();
             }
             catch (Exception ex)
@@ -233,26 +248,6 @@ namespace CNPM
             }
         }
 
-        private int GetStockForPeriod(string startDate, string endDate)
-        {
-            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
-            string query = @"
-                SELECT SUM(od.Quantity) AS TonKho 
-                FROM OrderDetails od
-                JOIN Orders o ON od.OrderID = o.OrderID
-                WHERE o.OrderDate BETWEEN @startDate AND @endDate";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@startDate", startDate);
-                cmd.Parameters.AddWithValue("@endDate", endDate);
-                con.Open();
-
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
         // Calculate percentage increase and display them in textboxes
         private void CalculateAndDisplayIncrease()
         {
@@ -260,18 +255,14 @@ namespace CNPM
             decimal secondHalfRevenue = GetRevenueForPeriod("2023-07-01", "2023-12-31");
             double revenueIncrease = CalculatePercentageIncrease((double)firstHalfRevenue, (double)secondHalfRevenue);  // Convert to double
             textbox2.Text = "↑ " + revenueIncrease.ToString("F2") + "%";  // Display the increase in textbox2
+            textbox2.TextAlign = HorizontalAlignment.Center;
 
             int firstHalfOrders = GetOrdersForPeriod("2023-01-01", "2023-06-30");
             int secondHalfOrders = GetOrdersForPeriod("2023-07-01", "2023-12-31");
             double ordersIncrease = CalculatePercentageIncrease(firstHalfOrders, secondHalfOrders);
             textbox4.Text = "↑ " + ordersIncrease.ToString("F2") + "%";
-
-            int firstHalfStock = GetStockForPeriod("2023-01-01", "2023-06-30");
-            int secondHalfStock = GetStockForPeriod("2023-07-01", "2023-12-31");
-            double stockIncrease = CalculatePercentageIncrease(firstHalfStock, secondHalfStock);
-            textbox6.Text = "↑ " + stockIncrease.ToString("F2") + "%";
+            textbox4.TextAlign = HorizontalAlignment.Center;
         }
-
 
         private double CalculatePercentageIncrease(double firstHalf, double secondHalf)
         {
@@ -280,6 +271,11 @@ namespace CNPM
         }
 
         private void NoiDungTrangChu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bangTrangChu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
