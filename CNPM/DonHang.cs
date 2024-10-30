@@ -1,107 +1,212 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Drawing.Imaging;
+using System.Windows.Forms;
+
 namespace CNPM
 {
     public partial class DonHang : UserControl
     {
-        string connectstring = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataAdapter adt;
-        DataTable dt;
+        private DataTable orderDataTable;
+
         public DonHang()
         {
             InitializeComponent();
-        }
-        private Bitmap SetImageOpacity(Image image, float opacity)
-        {
-            // Create a bitmap the same size as the original image
-            Bitmap bmp = new Bitmap(image.Width, image.Height);
+            LoadOrderData(); // Tải dữ liệu đơn hàng khi khởi tạo
+            TimKiem.TextChanged += TimKiem_TextChanged; // Gắn sự kiện tìm kiếm
+            LoadOrderStatusCounts(); // Load the counts when initializing the control
 
-            using (Graphics g = Graphics.FromImage(bmp))
-            {
-                // Create a color matrix with the specified opacity
-                ColorMatrix colorMatrix = new ColorMatrix();
-                colorMatrix.Matrix33 = opacity;
-
-                // Create image attributes
-                ImageAttributes imgAttributes = new ImageAttributes();
-                imgAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                // Draw the image onto the bitmap with the specified opacity
-                g.DrawImage(image, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imgAttributes);
-            }
-
-            return bmp;
-        }
-        private void DonHang_Load(object sender, EventArgs e)
-        {
-            con=new SqlConnection(connectstring);
-            Bitmap originalImage = new Bitmap(TrongPicture.Image);
-            Bitmap transparentImage = SetImageOpacity(originalImage, 0.3f); // 30% opacity
-            TrongPicture.Image= transparentImage;
         }
 
-        public void hienthi()
+
+        // Hàm tải dữ liệu đơn hàng vào DataGridView và ẩn TrongPicture nếu có dữ liệu
+        private void LoadOrderData()
         {
+            DataGridViewDonhang.AutoGenerateColumns = false;
+            DataGridViewDonhang.Columns.Clear();  // Xóa các cột đã có để tránh bị trùng
+
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+
             try
             {
-                // Mở kết nối
-                con.Open();
+                string query = @"
+                SELECT 
+                    o.OrderID AS 'Mã đơn hàng', 
+                    c.Name AS 'Tên người nhận', 
+                    c.Phone AS 'Số điện thoại', 
+                    s.ShippingCode AS 'Mã vận chuyển',
+                    s.ShippingCo AS 'Đơn vị vận chuyển', 
+                    o.OrderDate AS 'Thời gian đặt hàng'
+                FROM 
+                    Orders o
+                JOIN 
+                    Customers c ON o.CustomerID = c.CustomerID
+                LEFT JOIN 
+                    Shipping2 s ON s.OrderID = o.OrderID";
 
-                // Câu truy vấn SQL để lấy dữ liệu
-                string query = "SELECT MaDonHang, TenKhachHang,SoDienThoai,MaVanChuyen,DonViVanChuyen, NgayDatHang FROM ()"; // Điều chỉnh theo bảng của bạn
-                cmd = new SqlCommand(query, con);
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            orderDataTable = new DataTable();
+                            adapter.Fill(orderDataTable);
 
-                // Tạo SqlDataAdapter để lấy dữ liệu
-                adt = new SqlDataAdapter(cmd);
+                            if (orderDataTable.Rows.Count > 0)
+                            {
+                                DataGridViewDonhang.DataSource = orderDataTable;
 
-                // Khởi tạo DataTable để chứa dữ liệu
-                dt = new DataTable();
+                                // Định nghĩa các cột cho DataGridView
+                                DataGridViewDonhang.Columns.Add(new DataGridViewTextBoxColumn
+                                {
+                                    Name = "Mã đơn hàng",
+                                    DataPropertyName = "Mã đơn hàng",
+                                    HeaderText = "Mã đơn hàng"
+                                });
+                                DataGridViewDonhang.Columns.Add(new DataGridViewTextBoxColumn
+                                {
+                                    Name = "Tên người nhận",
+                                    DataPropertyName = "Tên người nhận",
+                                    HeaderText = "Tên người nhận"
+                                });
+                                DataGridViewDonhang.Columns.Add(new DataGridViewTextBoxColumn
+                                {
+                                    Name = "Số điện thoại",
+                                    DataPropertyName = "Số điện thoại",
+                                    HeaderText = "Số điện thoại"
+                                });
+                                DataGridViewDonhang.Columns.Add(new DataGridViewTextBoxColumn
+                                {
+                                    Name = "Mã vận chuyển",
+                                    DataPropertyName = "Mã vận chuyển",
+                                    HeaderText = "Mã vận chuyển"
+                                });
+                                DataGridViewDonhang.Columns.Add(new DataGridViewTextBoxColumn
+                                {
+                                    Name = "Đơn vị vận chuyển",
+                                    DataPropertyName = "Đơn vị vận chuyển",
+                                    HeaderText = "Đơn vị vận chuyển"
+                                });
+                                DataGridViewDonhang.Columns.Add(new DataGridViewTextBoxColumn
+                                {
+                                    Name = "Thời gian đặt hàng",
+                                    DataPropertyName = "Thời gian đặt hàng",
+                                    HeaderText = "Thời gian đặt hàng"
+                                });
 
-                // Đổ dữ liệu từ DataAdapter vào DataTable
-                adt.Fill(dt);
+                                // Ẩn TrongPicture nếu có dữ liệu
+                                TrongPicture.Visible = false;
+                            }
+                            else
+                            {
+                                // Hiện TrongPicture nếu không có dữ liệu
+                                TrongPicture.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+                // Hiện TrongPicture nếu xảy ra lỗi
+                TrongPicture.Visible = true;
+            }
+        }
+        private void LoadOrderStatusCounts()
+        {
+            // Dictionary to hold the count for each order status
+            var statusCounts = new Dictionary<string, int>
+            {
+                { "Tất cả", 0 },
+                { "Đã hủy", 0 },
+                { "Cần xử lí", 0 },
+                { "Đã xác nhận", 0 },
+                { "Đang chuẩn bị", 0 },
+                { "Chờ gửi hàng", 0 },
+                { "Đã gửi", 0 },
+                { "Đã nhận", 0 }
+            };
 
-                // Gán dữ liệu cho từng cột của Guna2DataGridView
-                DataGridViewDonhang.AutoGenerateColumns = false;  // Tắt tự động tạo cột
+            try
+            {
+                string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
 
-                // Gán dữ liệu vào cột đã tạo sẵn
-                DataGridViewDonhang.Columns[0].DataPropertyName = "MaDonHang";
-                DataGridViewDonhang.Columns[1].DataPropertyName = "TenKhachHang";
-                DataGridViewDonhang.Columns[2].DataPropertyName = "NgayDatHang";
-                DataGridViewDonhang.Columns[3].DataPropertyName = "TongTien";
-                /*DataGridViewDonhang.Columns[4].DataPropertyName =*/
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
 
-                // Gán DataTable làm DataSource cho Guna2DataGridView
-                /*DataGridViewDonhang.DataSource = dt;*/
+                    // Query to get the count of each order status
+                    string query = @"SELECT OrderStatus, COUNT(*) AS StatusCount 
+                                     FROM Orders 
+                                     GROUP BY OrderStatus";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string status = reader["OrderStatus"].ToString();
+                                int count = Convert.ToInt32(reader["StatusCount"]);
+
+                                // Update the dictionary with counts
+                                if (statusCounts.ContainsKey(status))
+                                {
+                                    statusCounts[status] = count;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Update each label based on the status count dictionary
+                number1.Text = statusCounts["Tất cả"].ToString();
+                number2.Text = statusCounts["Đã hủy"].ToString();
+                number3.Text = statusCounts["Cần xử lí"].ToString();
+                number4.Text = statusCounts["Đã xác nhận"].ToString();
+                number5.Text = statusCounts["Đang chuẩn bị"].ToString();
+                number6.Text = statusCounts["Chờ gửi hàng"].ToString();
+                number7.Text = statusCounts["Đã gửi"].ToString();
+                number8.Text = statusCounts["Đã nhận"].ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            finally
+        }
+        private void TimKiem_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = TimKiem.Text.Trim();
+
+            if (orderDataTable != null)
             {
-                // Đóng kết nối sau khi lấy dữ liệu
-                con.Close();
+                if (!string.IsNullOrEmpty(filterText))
+                {
+                    // Lọc theo mã đơn hàng, tên người nhận, số điện thoại, mã vận chuyển
+                    orderDataTable.DefaultView.RowFilter =
+                        $"[Mã đơn hàng] LIKE '%{filterText}%' OR " +
+                        $"[Tên người nhận] LIKE '%{filterText}%' OR " +
+                        $"[Số điện thoại] LIKE '%{filterText}%' OR " +
+                        $"[Mã vận chuyển] LIKE '%{filterText}%'";
+                }
+                else
+                {
+                    // Bỏ lọc nếu không có văn bản tìm kiếm
+                    orderDataTable.DefaultView.RowFilter = string.Empty;
+                }
+
+                // Cập nhật DataGridView
+                DataGridViewDonhang.DataSource = orderDataTable.DefaultView;
             }
         }
 
-        private void ChiTiet_Click(object sender, EventArgs e)
+        private void DonHang_Load(object sender, EventArgs e)
         {
-            xacnhan ct= new xacnhan();  
-            ct.ShowDialog();
-            this.Show();
+
         }
-
-
     }
 }

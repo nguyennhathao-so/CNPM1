@@ -229,11 +229,27 @@ namespace CNPM
 
 
         // Thêm đơn hàng
-        // Method to add a new order and include the selected shipping company
+        // Add this list of statuses at the beginning of the class or within AddOrder
+        private readonly string[] orderStatuses = new string[]
+        {
+    "Đã nhận",
+    "Đã hủy",
+    "Chờ gửi hàng",
+    "Đang chuẩn bị",
+    "Đã xác nhận",
+    "Cần xử lí",
+    "Đã gửi",
+        };
+
+        // Modify AddOrder method to randomize the OrderStatus
         private string AddOrder(SqlConnection conn, SqlTransaction transaction, int customerId, Guid shippingId)
         {
             string orderId = Guid.NewGuid().ToString();
             string selectedShippingCo = ComboBoxDonViVanChuyen.SelectedItem?.ToString() ?? "Unknown";
+
+            // Randomly select an order status
+            Random random = new Random();
+            string randomStatus = orderStatuses[random.Next(orderStatuses.Length)];
 
             string query = @"INSERT INTO Orders (OrderID, CustomerID, OrderDate, ShippingID, ShippingAddress, ShippingCo, TotalPrice, OrderStatus) 
                      VALUES (@OrderID, @CustomerID, @OrderDate, @ShippingID, @ShippingAddress, @ShippingCo, @TotalPrice, @OrderStatus)";
@@ -247,13 +263,14 @@ namespace CNPM
                 cmd.Parameters.AddWithValue("@ShippingAddress", TextBoxDiaChi.Text);
                 cmd.Parameters.AddWithValue("@ShippingCo", selectedShippingCo);  // Use selected shipping company from ComboBox
                 cmd.Parameters.AddWithValue("@TotalPrice", decimal.Parse(tien1.Text));
-                cmd.Parameters.AddWithValue("@OrderStatus", "Processing");
+                cmd.Parameters.AddWithValue("@OrderStatus", randomStatus);  // Use random status here
 
                 cmd.ExecuteNonQuery();
             }
 
             return orderId;
         }
+
 
         // Thêm chi tiết đơn hàng
         private void AddOrderDetails(SqlConnection conn, SqlTransaction transaction, string orderId)

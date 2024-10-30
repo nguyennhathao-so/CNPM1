@@ -10,6 +10,7 @@ namespace CNPM
     {
         private DataTable searchProductsTable;
 
+
         public KhoHang()
         {
             InitializeComponent();
@@ -279,6 +280,11 @@ namespace CNPM
         private void KhoHang_Load(object sender, EventArgs e)
         {
             // Optionally load data here again if needed
+        }
+
+        private void TimKiem_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

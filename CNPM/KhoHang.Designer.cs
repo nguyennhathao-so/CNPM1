@@ -172,6 +172,7 @@
             this.TimKiem.SelectedText = "";
             this.TimKiem.Size = new System.Drawing.Size(837, 51);
             this.TimKiem.TabIndex = 35;
+            this.TimKiem.TextChanged += new System.EventHandler(this.TimKiem_TextChanged_1);
             // 
             // buttonThem
             // 
