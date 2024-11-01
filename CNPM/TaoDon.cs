@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 //code1
@@ -13,10 +14,12 @@ namespace CNPM
         private DataTable searchProductsTable;
         private DataTable selectedProductsTable;
 
+
         public TaoDon()
         {
             InitializeComponent();
             LoadProductData();
+            InitializeComboBoxes(); // Gọi InitializeComboBoxes để tải dữ liệu cho ComboBox
 
             ComboBoxDonViVanChuyen.Items.Add("OLEND");
             ComboBoxDonViVanChuyen.Items.Add("ShoppoExpress");
@@ -33,6 +36,7 @@ namespace CNPM
             tien3.TextChanged += CalculateRemainingAmount;
             tien4.TextChanged += CalculateRemainingAmount;
 
+
             // Tạo bảng để lưu sản phẩm đã chọn (giỏ hàng) và hiển thị trong DataGridView
             selectedProductsTable = new DataTable();
             selectedProductsTable.Columns.Add("Mã Sản Phẩm");
@@ -42,8 +46,92 @@ namespace CNPM
 
             // Ban đầu không hiển thị sản phẩm nào trong giỏ hàng (DataGridView trống)
             InitializeDataGridView(); // Thiết lập các cột ban đầu
+                                      // Load dữ liệu cho ComboBox Tỉnh khi form khởi động
+            
+        }
+        private void InitializeComboBoxes()
+        {
+            ComboBoxTinh.DropDownWidth = 250;
+            ComboBoxQuanHuyen.DropDownWidth = 250;
+            ComboBoxXaPhuong.DropDownWidth = 250;
+
+            // Load data for ComboBoxTinh (Provinces) on startup
+            LoadProvinces();
+
+            // Event handlers for selection changes
+            ComboBoxTinh.SelectedIndexChanged += ComboBoxTinh_SelectedIndexChanged;
+            ComboBoxQuanHuyen.SelectedIndexChanged += ComboBoxQuanHuyen_SelectedIndexChanged;
+        }
+        private void LoadProvinces()
+        {
+            string query = "SELECT province_id, name FROM province";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable provincesTable = new DataTable();
+                adapter.Fill(provincesTable);
+
+                ComboBoxTinh.DataSource = provincesTable;
+                ComboBoxTinh.DisplayMember = "name";
+                ComboBoxTinh.ValueMember = "province_id";
+            }
         }
 
+        private void ComboBoxTinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxTinh.SelectedValue != null)
+            {
+                int selectedProvinceID = (int)ComboBoxTinh.SelectedValue;
+                LoadDistricts(selectedProvinceID);
+            }
+        }
+
+        private void LoadDistricts(int provinceID)
+        {
+            string query = "SELECT district_id, name FROM district WHERE province_id = @province_id";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(query, conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@province_id", provinceID);
+
+                DataTable districtsTable = new DataTable();
+                adapter.Fill(districtsTable);
+
+                ComboBoxQuanHuyen.DataSource = districtsTable;
+                ComboBoxQuanHuyen.DisplayMember = "name";
+                ComboBoxQuanHuyen.ValueMember = "district_id";
+                ComboBoxQuanHuyen.SelectedIndex = -1; // Reset selection
+            }
+        }
+
+        private void ComboBoxQuanHuyen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxQuanHuyen.SelectedValue != null && ComboBoxQuanHuyen.SelectedValue is int)
+            {
+                int selectedDistrictID = (int)ComboBoxQuanHuyen.SelectedValue;
+                LoadWards(selectedDistrictID);
+            }
+        }
+
+        private void LoadWards(int districtID)
+        {
+            string query = "SELECT wards_id, name FROM wards WHERE district_id = @district_id";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(query, conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@district_id", districtID);
+
+                DataTable wardsTable = new DataTable();
+                adapter.Fill(wardsTable);
+
+                ComboBoxXaPhuong.DataSource = wardsTable;
+                ComboBoxXaPhuong.DisplayMember = "name";
+                ComboBoxXaPhuong.ValueMember = "wards_id";
+                ComboBoxXaPhuong.SelectedIndex = -1; // Reset selection
+            }
+        }
         // Thiết lập cột cho DataGridView nhưng không có dữ liệu ban đầu
         private void InitializeDataGridView()
         {
@@ -110,6 +198,9 @@ namespace CNPM
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
+        
+        
+
 
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -186,11 +277,11 @@ namespace CNPM
         }
 
         // Thêm hoặc cập nhật khách hàng
-        private int AddOrUpdateCustomer(SqlConnection conn, SqlTransaction transaction)
+        private int AddOrUpdateCustomer(SqlConnection conn, SqlTransaction transaction, string fullAddress)
         {
             string query = @"INSERT INTO Customers (Name, Phone, Email, DateOfBirth, Address) 
-                             VALUES (@Name, @Phone, @Email, @DateOfBirth, @Address);
-                             SELECT SCOPE_IDENTITY();";
+                     VALUES (@Name, @Phone, @Email, @DateOfBirth, @Address);
+                     SELECT SCOPE_IDENTITY();";
 
             using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
             {
@@ -198,7 +289,7 @@ namespace CNPM
                 cmd.Parameters.AddWithValue("@Phone", TextBoxSDT.Text);
                 cmd.Parameters.AddWithValue("@Email", TextBoxEmail.Text);
                 cmd.Parameters.AddWithValue("@DateOfBirth", NgaySinh.Value);
-                cmd.Parameters.AddWithValue("@Address", TextBoxDiaChi.Text);
+                cmd.Parameters.AddWithValue("@Address", fullAddress); // Sử dụng địa chỉ đầy đủ
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -242,7 +333,7 @@ namespace CNPM
         };
 
         // Modify AddOrder method to randomize the OrderStatus
-        private string AddOrder(SqlConnection conn, SqlTransaction transaction, int customerId, Guid shippingId)
+        private string AddOrder(SqlConnection conn, SqlTransaction transaction, int customerId, Guid shippingId, string fullAddress)
         {
             string orderId = Guid.NewGuid().ToString();
             string selectedShippingCo = ComboBoxDonViVanChuyen.SelectedItem?.ToString() ?? "Unknown";
@@ -260,10 +351,10 @@ namespace CNPM
                 cmd.Parameters.AddWithValue("@CustomerID", customerId);
                 cmd.Parameters.AddWithValue("@OrderDate", DateTime.Now);
                 cmd.Parameters.Add("@ShippingID", SqlDbType.UniqueIdentifier).Value = shippingId;
-                cmd.Parameters.AddWithValue("@ShippingAddress", TextBoxDiaChi.Text);
-                cmd.Parameters.AddWithValue("@ShippingCo", selectedShippingCo);  // Use selected shipping company from ComboBox
+                cmd.Parameters.AddWithValue("@ShippingAddress", fullAddress); // Sử dụng địa chỉ đầy đủ
+                cmd.Parameters.AddWithValue("@ShippingCo", selectedShippingCo);
                 cmd.Parameters.AddWithValue("@TotalPrice", decimal.Parse(tien1.Text));
-                cmd.Parameters.AddWithValue("@OrderStatus", randomStatus);  // Use random status here
+                cmd.Parameters.AddWithValue("@OrderStatus", randomStatus);
 
                 cmd.ExecuteNonQuery();
             }
@@ -294,6 +385,8 @@ namespace CNPM
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            string fullAddress = $"{TextBoxDiaChi.Text}, {ComboBoxXaPhuong.Text}, {ComboBoxQuanHuyen.Text}, {ComboBoxTinh.Text}";
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlTransaction transaction = null;
@@ -302,9 +395,9 @@ namespace CNPM
                     conn.Open();
                     transaction = conn.BeginTransaction();
 
-                    int customerId = AddOrUpdateCustomer(conn, transaction);
-                    string orderId = AddOrder(conn, transaction, customerId, Guid.NewGuid());
-                    Guid shippingId = AddShippingInfo(conn, transaction, orderId); // Use the correct `orderId` here
+                    int customerId = AddOrUpdateCustomer(conn, transaction, fullAddress);
+                    string orderId = AddOrder(conn, transaction, customerId, Guid.NewGuid(), fullAddress); // Tạo Order trước
+                    Guid shippingId = AddShippingInfo(conn, transaction, orderId); // Sử dụng orderId đã tạo cho Shipping2
                     AddOrderDetails(conn, transaction, orderId);
 
                     transaction.Commit();
@@ -313,18 +406,10 @@ namespace CNPM
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
-                    if (transaction != null)
-                    {
-                        transaction.Rollback();
-                    }
+                    transaction?.Rollback();
                 }
             }
         }
 
-
-        private void TaoDon_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
