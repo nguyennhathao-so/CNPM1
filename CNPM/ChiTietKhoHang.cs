@@ -50,6 +50,9 @@ namespace CNPM
 
         }
 
-        
+        private void textboxtensanpham_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

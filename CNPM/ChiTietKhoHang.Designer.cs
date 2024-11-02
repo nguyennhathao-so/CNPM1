@@ -515,6 +515,7 @@
             this.textboxtensanpham.Size = new System.Drawing.Size(743, 131);
             this.textboxtensanpham.TabIndex = 32;
             this.textboxtensanpham.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textboxtensanpham.TextChanged += new System.EventHandler(this.textboxtensanpham_TextChanged);
             // 
             // ChiTietKhoHang
             // 

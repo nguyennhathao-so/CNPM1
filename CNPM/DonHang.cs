@@ -16,10 +16,15 @@ namespace CNPM
             LoadOrderData(); // Tải dữ liệu đơn hàng khi khởi tạo
             TimKiem.TextChanged += TimKiem_TextChanged; // Gắn sự kiện tìm kiếm
             LoadOrderStatusCounts(); // Load the counts when initializing the control
-
+            DataGridViewDonhang.CellDoubleClick += DataGridViewDonhang_CellDoubleClick;
+            ButtonReload.Click += ButtonReload_Click; // Sự kiện khi nhấn nút Reload
         }
 
-
+        private void ButtonReload_Click(object sender, EventArgs e)
+        {
+            LoadOrderData();
+            LoadOrderStatusCounts();
+        }
         // Hàm tải dữ liệu đơn hàng vào DataGridView và ẩn TrongPicture nếu có dữ liệu
         private void LoadOrderData()
         {
@@ -37,7 +42,10 @@ namespace CNPM
                     c.Phone AS 'Số điện thoại', 
                     s.ShippingCode AS 'Mã vận chuyển',
                     s.ShippingCo AS 'Đơn vị vận chuyển', 
-                    o.OrderDate AS 'Thời gian đặt hàng'
+                    o.OrderDate AS 'Thời gian đặt hàng',
+                    o.OrderStatus AS 'Trạng thái đơn hàng',
+                    o.ShippingAddress AS 'Địa chỉ nhận'
+
                 FROM 
                     Orders o
                 JOIN 
@@ -118,32 +126,35 @@ namespace CNPM
         }
         private void LoadOrderStatusCounts()
         {
-            // Dictionary to hold the count for each order status
             var statusCounts = new Dictionary<string, int>
-            {
-                { "Tất cả", 0 },
-                { "Đã hủy", 0 },
-                { "Cần xử lí", 0 },
-                { "Đã xác nhận", 0 },
-                { "Đang chuẩn bị", 0 },
-                { "Chờ gửi hàng", 0 },
-                { "Đã gửi", 0 },
-                { "Đã nhận", 0 }
-            };
+    {
+        { "Tất cả", 0 },
+        { "Đã hủy", 0 },
+        { "Cần xử lí", 0 },
+        { "Đã xác nhận", 0 },
+        { "Đang chuẩn bị", 0 },
+        { "Chờ gửi hàng", 0 },
+        { "Đã gửi", 0 },
+        { "Đã nhận", 0 }
+    };
+
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
 
             try
             {
-                string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
-
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
 
-                    // Query to get the count of each order status
-                    string query = @"SELECT OrderStatus, COUNT(*) AS StatusCount 
-                                     FROM Orders 
-                                     GROUP BY OrderStatus";
+                    // Đếm tổng số đơn hàng để hiển thị cho nhãn "Tất cả"
+                    string totalQuery = "SELECT COUNT(*) FROM Orders";
+                    using (SqlCommand totalCmd = new SqlCommand(totalQuery, con))
+                    {
+                        statusCounts["Tất cả"] = (int)totalCmd.ExecuteScalar();
+                    }
 
+                    // Đếm từng trạng thái đơn hàng và cập nhật các nhãn tương ứng
+                    string query = @"SELECT OrderStatus, COUNT(*) AS StatusCount FROM Orders GROUP BY OrderStatus";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -153,7 +164,6 @@ namespace CNPM
                                 string status = reader["OrderStatus"].ToString();
                                 int count = Convert.ToInt32(reader["StatusCount"]);
 
-                                // Update the dictionary with counts
                                 if (statusCounts.ContainsKey(status))
                                 {
                                     statusCounts[status] = count;
@@ -163,7 +173,7 @@ namespace CNPM
                     }
                 }
 
-                // Update each label based on the status count dictionary
+                // Cập nhật các nhãn với giá trị đếm đơn hàng
                 number1.Text = statusCounts["Tất cả"].ToString();
                 number2.Text = statusCounts["Đã hủy"].ToString();
                 number3.Text = statusCounts["Cần xử lí"].ToString();
@@ -175,7 +185,7 @@ namespace CNPM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi khi cập nhật trạng thái đơn hàng: " + ex.Message);
             }
         }
         private void TimKiem_TextChanged(object sender, EventArgs e)
@@ -203,10 +213,117 @@ namespace CNPM
                 DataGridViewDonhang.DataSource = orderDataTable.DefaultView;
             }
         }
-
-        private void DonHang_Load(object sender, EventArgs e)
+        private void DataGridViewDonhang_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                string orderId = DataGridViewDonhang.Rows[e.RowIndex].Cells["Mã đơn hàng"].Value.ToString();
+                string receiverName = DataGridViewDonhang.Rows[e.RowIndex].Cells["Tên người nhận"].Value.ToString();
+                string phone = DataGridViewDonhang.Rows[e.RowIndex].Cells["Số điện thoại"].Value.ToString();
+                string shippingCode = DataGridViewDonhang.Rows[e.RowIndex].Cells["Mã vận chuyển"].Value.ToString();
+                string shippingCo = DataGridViewDonhang.Rows[e.RowIndex].Cells["Đơn vị vận chuyển"].Value.ToString();
+                DateTime orderDate = Convert.ToDateTime(DataGridViewDonhang.Rows[e.RowIndex].Cells["Thời gian đặt hàng"].Value);
+                string orderStatus = GetOrderStatusFromDatabase(orderId);
+                string deliveryAddress = GetDeliveryAddressFromDatabase(orderId);
+                DataTable productDetails = GetOrderProductDetails(orderId);
 
+                ChiTietDonHang chiTietForm = new ChiTietDonHang(orderId, receiverName, phone, shippingCode, shippingCo, orderDate, orderStatus, deliveryAddress, productDetails);
+                chiTietForm.ShowDialog();
+            }
         }
+
+
+        
+        private string GetDeliveryAddressFromDatabase(string orderId)
+        {
+            string deliveryAddress = string.Empty;
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = @"
+                SELECT c.Address 
+                FROM Orders o
+                JOIN Customers c ON o.CustomerID = c.CustomerID
+                WHERE o.OrderID = @OrderID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderID", orderId);
+                        deliveryAddress = cmd.ExecuteScalar()?.ToString() ?? "Không có địa chỉ";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lấy địa chỉ nhận: " + ex.Message);
+            }
+
+            return deliveryAddress;
+        }
+
+        private DataTable GetOrderProductDetails(string orderId)
+        {
+            DataTable productDetails = new DataTable();
+
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+            string query = @"
+        SELECT 
+            p.ProductID AS 'Mã sản phẩm', 
+            p.ProductName AS 'Tên sản phẩm', 
+            p.Price  AS 'Đơn giá', 
+            od.Quantity  AS 'Số lượng'
+        FROM 
+            OrderDetails od
+        JOIN 
+            Products p ON od.ProductID = p.ProductID
+        WHERE 
+            od.OrderID = @OrderID";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(productDetails);
+                    }
+                }
+            }
+
+            return productDetails;
+        }
+
+        private string GetOrderStatusFromDatabase(string orderId)
+        {
+            string orderStatus = string.Empty;
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT OrderStatus FROM Orders WHERE OrderID = @OrderID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderID", orderId);
+                        orderStatus = cmd.ExecuteScalar()?.ToString() ?? "Không xác định";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lấy trạng thái đơn hàng: " + ex.Message);
+            }
+
+            return orderStatus;
+        }
+       
     }
 }

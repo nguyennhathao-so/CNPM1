@@ -323,13 +323,9 @@ namespace CNPM
         // Add this list of statuses at the beginning of the class or within AddOrder
         private readonly string[] orderStatuses = new string[]
         {
-    "Đã nhận",
-    "Đã hủy",
-    "Chờ gửi hàng",
+
     "Đang chuẩn bị",
-    "Đã xác nhận",
-    "Cần xử lí",
-    "Đã gửi",
+
         };
 
         // Modify AddOrder method to randomize the OrderStatus
@@ -411,5 +407,9 @@ namespace CNPM
             }
         }
 
+        private void TaoDon_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

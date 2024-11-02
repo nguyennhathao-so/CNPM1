@@ -47,6 +47,9 @@
             this.TextBoxSDT = new Guna.UI2.WinForms.Guna2TextBox();
             this.TextBoxKhachhang = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.ComboBoxQuanHuyen = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.ComboBoxXaPhuong = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.ComboBoxTinh = new Guna.UI2.WinForms.Guna2ComboBox();
             this.TextBoxDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
             this.TextBoxNguoiNhan = new Guna.UI2.WinForms.Guna2TextBox();
             this.TextBox1SDT = new Guna.UI2.WinForms.Guna2TextBox();
@@ -78,9 +81,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ComboBoxTinh = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.ComboBoxXaPhuong = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.ComboBoxQuanHuyen = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -328,6 +328,72 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(482, 300);
             this.guna2Panel2.TabIndex = 30;
+            // 
+            // ComboBoxQuanHuyen
+            // 
+            this.ComboBoxQuanHuyen.BackColor = System.Drawing.Color.Transparent;
+            this.ComboBoxQuanHuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.ComboBoxQuanHuyen.BorderRadius = 14;
+            this.ComboBoxQuanHuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ComboBoxQuanHuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxQuanHuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
+            this.ComboBoxQuanHuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxQuanHuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxQuanHuyen.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ComboBoxQuanHuyen.ForeColor = System.Drawing.Color.Black;
+            this.ComboBoxQuanHuyen.ItemHeight = 33;
+            this.ComboBoxQuanHuyen.Items.AddRange(new object[] {
+            "Quận/Huyện"});
+            this.ComboBoxQuanHuyen.Location = new System.Drawing.Point(150, 233);
+            this.ComboBoxQuanHuyen.Name = "ComboBoxQuanHuyen";
+            this.ComboBoxQuanHuyen.Size = new System.Drawing.Size(166, 39);
+            this.ComboBoxQuanHuyen.StartIndex = 0;
+            this.ComboBoxQuanHuyen.TabIndex = 15;
+            this.ComboBoxQuanHuyen.Tag = "";
+            // 
+            // ComboBoxXaPhuong
+            // 
+            this.ComboBoxXaPhuong.BackColor = System.Drawing.Color.Transparent;
+            this.ComboBoxXaPhuong.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.ComboBoxXaPhuong.BorderRadius = 14;
+            this.ComboBoxXaPhuong.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ComboBoxXaPhuong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxXaPhuong.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
+            this.ComboBoxXaPhuong.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxXaPhuong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxXaPhuong.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ComboBoxXaPhuong.ForeColor = System.Drawing.Color.Black;
+            this.ComboBoxXaPhuong.ItemHeight = 33;
+            this.ComboBoxXaPhuong.Items.AddRange(new object[] {
+            "Xã/Phường"});
+            this.ComboBoxXaPhuong.Location = new System.Drawing.Point(322, 234);
+            this.ComboBoxXaPhuong.Name = "ComboBoxXaPhuong";
+            this.ComboBoxXaPhuong.Size = new System.Drawing.Size(154, 39);
+            this.ComboBoxXaPhuong.StartIndex = 0;
+            this.ComboBoxXaPhuong.TabIndex = 14;
+            this.ComboBoxXaPhuong.Tag = "";
+            // 
+            // ComboBoxTinh
+            // 
+            this.ComboBoxTinh.BackColor = System.Drawing.Color.Transparent;
+            this.ComboBoxTinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.ComboBoxTinh.BorderRadius = 14;
+            this.ComboBoxTinh.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ComboBoxTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
+            this.ComboBoxTinh.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxTinh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ComboBoxTinh.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ComboBoxTinh.ForeColor = System.Drawing.Color.Black;
+            this.ComboBoxTinh.ItemHeight = 33;
+            this.ComboBoxTinh.Items.AddRange(new object[] {
+            "Tỉnh/TP"});
+            this.ComboBoxTinh.Location = new System.Drawing.Point(22, 234);
+            this.ComboBoxTinh.Name = "ComboBoxTinh";
+            this.ComboBoxTinh.Size = new System.Drawing.Size(122, 39);
+            this.ComboBoxTinh.StartIndex = 0;
+            this.ComboBoxTinh.TabIndex = 12;
+            this.ComboBoxTinh.Tag = "";
             // 
             // TextBoxDiaChi
             // 
@@ -887,72 +953,6 @@
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
-            // ComboBoxTinh
-            // 
-            this.ComboBoxTinh.BackColor = System.Drawing.Color.Transparent;
-            this.ComboBoxTinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            this.ComboBoxTinh.BorderRadius = 14;
-            this.ComboBoxTinh.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.ComboBoxTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxTinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
-            this.ComboBoxTinh.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxTinh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxTinh.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ComboBoxTinh.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxTinh.ItemHeight = 33;
-            this.ComboBoxTinh.Items.AddRange(new object[] {
-            "Tỉnh/TP"});
-            this.ComboBoxTinh.Location = new System.Drawing.Point(22, 234);
-            this.ComboBoxTinh.Name = "ComboBoxTinh";
-            this.ComboBoxTinh.Size = new System.Drawing.Size(122, 39);
-            this.ComboBoxTinh.StartIndex = 0;
-            this.ComboBoxTinh.TabIndex = 12;
-            this.ComboBoxTinh.Tag = "";
-            // 
-            // ComboBoxXaPhuong
-            // 
-            this.ComboBoxXaPhuong.BackColor = System.Drawing.Color.Transparent;
-            this.ComboBoxXaPhuong.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            this.ComboBoxXaPhuong.BorderRadius = 14;
-            this.ComboBoxXaPhuong.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.ComboBoxXaPhuong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxXaPhuong.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
-            this.ComboBoxXaPhuong.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxXaPhuong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxXaPhuong.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ComboBoxXaPhuong.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxXaPhuong.ItemHeight = 33;
-            this.ComboBoxXaPhuong.Items.AddRange(new object[] {
-            "Xã/Phường"});
-            this.ComboBoxXaPhuong.Location = new System.Drawing.Point(322, 234);
-            this.ComboBoxXaPhuong.Name = "ComboBoxXaPhuong";
-            this.ComboBoxXaPhuong.Size = new System.Drawing.Size(154, 39);
-            this.ComboBoxXaPhuong.StartIndex = 0;
-            this.ComboBoxXaPhuong.TabIndex = 14;
-            this.ComboBoxXaPhuong.Tag = "";
-            // 
-            // ComboBoxQuanHuyen
-            // 
-            this.ComboBoxQuanHuyen.BackColor = System.Drawing.Color.Transparent;
-            this.ComboBoxQuanHuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            this.ComboBoxQuanHuyen.BorderRadius = 14;
-            this.ComboBoxQuanHuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.ComboBoxQuanHuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxQuanHuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(205)))), ((int)(((byte)(240)))));
-            this.ComboBoxQuanHuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxQuanHuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxQuanHuyen.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ComboBoxQuanHuyen.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxQuanHuyen.ItemHeight = 33;
-            this.ComboBoxQuanHuyen.Items.AddRange(new object[] {
-            "Quận/Huyện"});
-            this.ComboBoxQuanHuyen.Location = new System.Drawing.Point(150, 233);
-            this.ComboBoxQuanHuyen.Name = "ComboBoxQuanHuyen";
-            this.ComboBoxQuanHuyen.Size = new System.Drawing.Size(166, 39);
-            this.ComboBoxQuanHuyen.StartIndex = 0;
-            this.ComboBoxQuanHuyen.TabIndex = 15;
-            this.ComboBoxQuanHuyen.Tag = "";
-            // 
             // TaoDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -977,6 +977,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TaoDon";
             this.Size = new System.Drawing.Size(1617, 932);
+            this.Load += new System.EventHandler(this.TaoDon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
