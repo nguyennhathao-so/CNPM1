@@ -32,10 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiTietDonHang));
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.nenChiTiet = new Guna.UI2.WinForms.Guna2Panel();
-            this.ChinhsuaButton = new Guna.UI2.WinForms.Guna2Button();
             this.TextBoxTrangThai = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TextBoxDonVivanchuyen = new Guna.UI2.WinForms.Guna2TextBox();
@@ -73,7 +73,6 @@
             // 
             this.nenChiTiet.BackColor = System.Drawing.Color.Transparent;
             this.nenChiTiet.BorderRadius = 17;
-            this.nenChiTiet.Controls.Add(this.ChinhsuaButton);
             this.nenChiTiet.Controls.Add(this.TextBoxTrangThai);
             this.nenChiTiet.Controls.Add(this.label5);
             this.nenChiTiet.Controls.Add(this.TextBoxDonVivanchuyen);
@@ -99,23 +98,6 @@
             this.nenChiTiet.Size = new System.Drawing.Size(596, 698);
             this.nenChiTiet.TabIndex = 2;
             // 
-            // ChinhsuaButton
-            // 
-            this.ChinhsuaButton.BorderRadius = 13;
-            this.ChinhsuaButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.ChinhsuaButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.ChinhsuaButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.ChinhsuaButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.ChinhsuaButton.FillColor = System.Drawing.Color.Red;
-            this.ChinhsuaButton.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChinhsuaButton.ForeColor = System.Drawing.Color.White;
-            this.ChinhsuaButton.Location = new System.Drawing.Point(196, 630);
-            this.ChinhsuaButton.Name = "ChinhsuaButton";
-            this.ChinhsuaButton.Size = new System.Drawing.Size(180, 45);
-            this.ChinhsuaButton.TabIndex = 4;
-            this.ChinhsuaButton.Text = "Xong";
-            this.ChinhsuaButton.Click += new System.EventHandler(this.ChinhsuaButton_Click_1);
-            // 
             // TextBoxTrangThai
             // 
             this.TextBoxTrangThai.BorderRadius = 10;
@@ -129,7 +111,7 @@
             this.TextBoxTrangThai.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxTrangThai.ForeColor = System.Drawing.Color.Black;
             this.TextBoxTrangThai.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TextBoxTrangThai.Location = new System.Drawing.Point(272, 587);
+            this.TextBoxTrangThai.Location = new System.Drawing.Point(254, 587);
             this.TextBoxTrangThai.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextBoxTrangThai.Name = "TextBoxTrangThai";
             this.TextBoxTrangThai.PasswordChar = '\0';
@@ -142,7 +124,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(40, 590);
+            this.label5.Location = new System.Drawing.Point(28, 587);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(210, 26);
             this.label5.TabIndex = 16;
@@ -232,10 +214,10 @@
             this.DataGridViewBangChiTiet.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.DataGridViewBangChiTiet.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(97)))), ((int)(((byte)(125)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(97)))), ((int)(((byte)(125)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataGridViewBangChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -258,6 +240,14 @@
             this.DataGridViewBangChiTiet.Location = new System.Drawing.Point(33, 261);
             this.DataGridViewBangChiTiet.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DataGridViewBangChiTiet.Name = "DataGridViewBangChiTiet";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewBangChiTiet.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewBangChiTiet.RowHeadersVisible = false;
             this.DataGridViewBangChiTiet.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.DataGridViewBangChiTiet.RowTemplate.Height = 24;
@@ -561,6 +551,5 @@
         private Guna.UI2.WinForms.Guna2TextBox TextBoxDonVivanchuyen;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2TextBox TextBoxMavanchuyen;
-        private Guna.UI2.WinForms.Guna2Button ChinhsuaButton;
     }
 }

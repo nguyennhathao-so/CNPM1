@@ -9,7 +9,10 @@ namespace CNPM
     public partial class DonHang : UserControl
     {
         private DataTable orderDataTable;
-
+        private readonly List<string> orderStatuses = new List<string>
+        {
+            "Cần xử lí", "Đã xác nhận", "Đang chuẩn bị", "Chờ gửi hàng", "Đã gửi", "Đã nhận", "Đã hủy"
+        };
         public DonHang()
         {
             InitializeComponent();
@@ -18,6 +21,8 @@ namespace CNPM
             LoadOrderStatusCounts(); // Load the counts when initializing the control
             DataGridViewDonhang.CellDoubleClick += DataGridViewDonhang_CellDoubleClick;
             ButtonReload.Click += ButtonReload_Click; // Sự kiện khi nhấn nút Reload
+            buttonupdate.Click += ButtonUpdateStatus_Click; // Sự kiện khi nhấn nút Cập nhật trạng thái
+
         }
 
         private void ButtonReload_Click(object sender, EventArgs e)
@@ -25,6 +30,60 @@ namespace CNPM
             LoadOrderData();
             LoadOrderStatusCounts();
         }
+        private void ButtonUpdateStatus_Click(object sender, EventArgs e)
+        {
+            if (DataGridViewDonhang.SelectedRows.Count > 0)
+            {
+                // Lấy thông tin OrderID của dòng được chọn
+                string orderId = DataGridViewDonhang.SelectedRows[0].Cells["Mã đơn hàng"].Value.ToString();
+                string currentStatus = GetOrderStatusFromDatabase(orderId);
+
+                // Kiểm tra trạng thái hiện tại và cập nhật sang trạng thái tiếp theo
+                int currentIndex = orderStatuses.IndexOf(currentStatus);
+                if (currentIndex >= 0 && currentIndex < orderStatuses.Count - 2) // Không cập nhật nếu là "Đã nhận" hoặc "Đã hủy"
+                {
+                    string newStatus = orderStatuses[currentIndex + 1];
+                    UpdateOrderStatus(orderId, newStatus);
+                    MessageBox.Show($"Trạng thái đơn hàng đã được cập nhật thành: {newStatus}");
+
+                    // Tải lại dữ liệu sau khi cập nhật
+                    LoadOrderData();
+                    LoadOrderStatusCounts();
+                }
+                else
+                {
+                    MessageBox.Show("Trạng thái đơn hàng hiện tại không thể cập nhật thêm.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một đơn hàng để cập nhật trạng thái.");
+            }
+        }
+        private void UpdateOrderStatus(string orderId, string newStatus)
+        {
+            string connectionString = @"Data Source=Hphuc\MSSQLSERVERF;Initial Catalog=CNPM_database;Integrated Security=True";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Orders SET OrderStatus = @OrderStatus WHERE OrderID = @OrderID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@OrderStatus", newStatus);
+                        cmd.Parameters.AddWithValue("@OrderID", orderId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật trạng thái đơn hàng: " + ex.Message);
+            }
+        }
+
         // Hàm tải dữ liệu đơn hàng vào DataGridView và ẩn TrongPicture nếu có dữ liệu
         private void LoadOrderData()
         {

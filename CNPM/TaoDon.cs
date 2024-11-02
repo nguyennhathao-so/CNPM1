@@ -175,8 +175,18 @@ namespace CNPM
             try
             {
                 // Query to select product details
-                string query = @"SELECT ProductID AS 'Mã Sản Phẩm', ProductName AS 'Tên sản phẩm', Price AS 'Giá sản phẩm' FROM Products";
-
+                string query = @"
+    SELECT 
+        p.ProductID AS 'Mã Sản Phẩm', 
+        p.ProductName AS 'Tên sản phẩm', 
+        p.Price AS 'Giá sản phẩm',
+        (p.Stock - COALESCE(SUM(od.Quantity), 0)) AS 'Số lượng'
+    FROM 
+        Products p
+    LEFT JOIN 
+        OrderDetails od ON p.ProductID = od.ProductID
+    GROUP BY 
+        p.ProductID, p.ProductName, p.Price, p.Stock";
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -408,6 +418,11 @@ namespace CNPM
         }
 
         private void TaoDon_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -124,20 +124,7 @@ namespace CNPM
             }
         }
 
-        private void ChinhsuaButton_Click_1(object sender, EventArgs e)
-        {
-            // Get the new order status from the TextBox
-            string newStatus = TextBoxTrangThai.Text;
-
-            // Update the order status in the database
-            UpdateOrderStatus(orderId, newStatus);
-
-            // Raise the OrderStatusUpdated event to notify the main form of the update
-            OrderStatusUpdated?.Invoke();
-
-            // Optional: Close the details form after updating
-            this.Close();
-        }
+        
 
     }
 }
