@@ -51,7 +51,7 @@ namespace CNPM
                     TrangChu dashboard = new TrangChu();
                     this.Hide();
                     dashboard.ShowDialog();
-                    this.Show();
+                    this.Close();
                 }
                 else
                 {
